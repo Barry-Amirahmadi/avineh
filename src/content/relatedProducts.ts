@@ -3,18 +3,19 @@ import type { ResolvedProduct } from "@/types/content";
 /**
  * What to show at the bottom of a product page.
  *
- * With five products in five distinct categories, "related" has no real
- * relation to express yet — so the honest thing is a rule that *would* express
- * one as the catalogue grows, and a heading that does not overclaim in the
- * meantime (the section is titled «ادامهٔ مجموعه», not «محصولات مرتبط»).
+ * Nine gowns across three collections, so the same-category preference below
+ * is live rather than aspirational: every gown has two siblings, and the pair
+ * at the foot of a page is always from its own collection. The heading still
+ * does not overclaim — «ادامهٔ کالکشن», not «طرح‌های مرتبط» — because sharing a
+ * collection is a sequence, not a relationship anyone asserted.
  *
  * The rule, in order:
  *
- * 1. Start reading from the product *after* this one and wrap around, so each
+ * 1. Start reading from the gown *after* this one and wrap around, so each
  *    page shows a different pair. Taking the first two of the list every time
- *    would make four of the five pages recommend the same two products.
- * 2. Prefer the same category. Inert today — no category has a second member —
- *    and the first thing that starts working when one does.
+ *    would make eight of the nine pages recommend the same two gowns.
+ * 2. Prefer the same collection, which with three members each means the pair
+ *    is always the other two gowns of that collection.
  */
 export function relatedProducts(
   product: ResolvedProduct,

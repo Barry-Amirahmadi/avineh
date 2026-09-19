@@ -34,7 +34,20 @@ export const ui: UiStrings = {
     close: "بستن نمای بزرگ",
     previous: "تصویر قبلی",
     next: "تصویر بعدی",
-    /** Between position and total: «۳ از ۶». */
+    /** Between position and total: «۳ از ۸». */
     counterJoin: "از",
+  },
+
+  /**
+   * The thumbnail strip under a gown's primary photograph.
+   *
+   * `open` is followed by the view's position — «نمای ۲» — rather than by a
+   * description of the picture. The description is the image's own `alt`, which
+   * the enlarged view announces; repeating it on the button would make a screen
+   * reader read the same sentence twice to get to the same place.
+   */
+  views: {
+    label: "نماهای دیگر این طرح",
+    open: "نمای",
   },
 };

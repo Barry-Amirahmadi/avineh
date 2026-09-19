@@ -9,6 +9,7 @@ import { EditorialImage } from "@/components/ui/EditorialImage";
 import { ToneSwatch } from "@/components/ui/ToneSwatch";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
+import { ProductViews } from "@/components/products/ProductViews";
 
 /**
  * Product opener.
@@ -62,6 +63,11 @@ export function ProductHero({ product }: { product: ResolvedProduct }) {
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 priority
               />
+              {/* Directly under the photograph it belongs to, not in a band of
+                  its own further down: the strip is a control on this image,
+                  and putting it elsewhere makes the reader hunt for the thing
+                  it changes. Renders nothing when the gown has no extra views. */}
+              <ProductViews product={product} />
             </div>
 
             {/* Six columns at `lg`, five from `xl`. At 1024 the five-column

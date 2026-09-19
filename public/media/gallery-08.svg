@@ -6,14 +6,14 @@
       <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
     </radialGradient>
     <linearGradient id="fall" x1="1" y1="0" x2="0.1" y2="1">
-      <stop offset="0%" stop-color="#6B5560" stop-opacity="0.92"/>
-      <stop offset="100%" stop-color="#6B5560" stop-opacity="0.34"/>
+      <stop offset="0%" stop-color="#C8C6C9" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#C8C6C9" stop-opacity="0.34"/>
     </linearGradient>
     <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="130.0"/>
     </filter>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="59" result="n"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="71" result="n"/>
       <feColorMatrix type="saturate" values="0" in="n" result="g"/>
       <feComponentTransfer in="g" result="gt">
         <feFuncA type="linear" slope="0.5"/>
@@ -26,9 +26,9 @@
     <rect width="1000" height="1250" fill="#E6E2E1"/>
     <rect width="1000" height="1250" fill="url(#fall)" opacity="0.55"/>
     <g filter="url(#soft)">
-      <ellipse cx="480" cy="675" rx="270" ry="346" fill="#6B5560" opacity="0.85"/>
-      <ellipse cx="593" cy="516" rx="135" ry="118" fill="#FFFFFF" opacity="0.26"/>
-      <ellipse cx="313" cy="848" rx="189" ry="138" fill="#000000" opacity="0.2"/>
+      <ellipse cx="540" cy="775" rx="240" ry="307" fill="#C8C6C9" opacity="0.85"/>
+      <ellipse cx="641" cy="634" rx="120" ry="104" fill="#FFFFFF" opacity="0.26"/>
+      <ellipse cx="391" cy="929" rx="168" ry="123" fill="#000000" opacity="0.2"/>
     </g>
     <rect width="1000" height="1250" fill="url(#light)"/>
   </g>

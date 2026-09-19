@@ -29,11 +29,11 @@
 }
 
 .btn--primary {
-  background-color: var(--color-sormeh);
+  background-color: var(--color-makhmal);
   color: var(--color-chalk);
 }
 .btn--primary:hover {
-  background-color: color-mix(in srgb, var(--color-sormeh) 84%, var(--color-firouzeh));
+  background-color: color-mix(in srgb, var(--color-makhmal) 84%, var(--color-atlas));
 }
 
 .btn--secondary {
@@ -46,11 +46,11 @@
 }
 
 .on-dark .btn--primary {
-  background-color: var(--color-firouzeh-bright);
-  color: var(--color-sormeh);
+  background-color: var(--color-atlas-bright);
+  color: var(--color-makhmal);
 }
 .on-dark .btn--primary:hover {
-  background-color: color-mix(in srgb, var(--color-firouzeh-bright) 82%, #ffffff);
+  background-color: color-mix(in srgb, var(--color-atlas-bright) 82%, #ffffff);
 }
 .on-dark .btn--secondary {
   border-color: var(--color-line-dark-strong);
@@ -82,13 +82,13 @@
   transition: border-color var(--dur) var(--ease-out);
 }
 .link-lead:hover .link-lead__text {
-  border-color: var(--color-firouzeh-deep);
+  border-color: var(--color-atlas-deep);
 }
 .on-dark .link-lead__text {
   border-bottom-color: var(--color-line-dark-strong);
 }
 .on-dark .link-lead:hover .link-lead__text {
-  border-bottom-color: var(--color-firouzeh-bright);
+  border-bottom-color: var(--color-atlas-bright);
 }
 
 /* ---- Name link — a heading that navigates ------------------------------- */
@@ -183,7 +183,7 @@
   border-block-start-color: var(--color-line-dark);
 }
 .group-media:hover .collection-item__meta {
-  border-block-start-color: var(--color-firouzeh-bright);
+  border-block-start-color: var(--color-atlas-bright);
 }
 
 /* ---- Section header rule ------------------------------------------------ */
@@ -211,14 +211,14 @@
   content: "";
   inline-size: 2.25rem;
   block-size: 1px;
-  background-color: var(--color-firouzeh);
+  background-color: var(--color-atlas);
   flex: none;
 }
 .on-dark .eyebrow {
   color: var(--color-chalk-2);
 }
 .on-dark .eyebrow::before {
-  background-color: var(--color-firouzeh-bright);
+  background-color: var(--color-atlas-bright);
 }
 
 /* ---- Tone swatch — the product's own shade, shown literally -------------- */
@@ -237,7 +237,7 @@
   position: sticky;
   inset-block-start: 0;
   z-index: 50;
-  background-color: color-mix(in srgb, var(--color-bone) 82%, transparent);
+  background-color: color-mix(in srgb, var(--color-harir) 82%, transparent);
   backdrop-filter: blur(14px);
   border-block-end: 1px solid transparent;
   transition:
@@ -246,7 +246,7 @@
 }
 .site-header[data-scrolled="true"] {
   border-block-end-color: var(--color-line);
-  background-color: color-mix(in srgb, var(--color-bone) 94%, transparent);
+  background-color: color-mix(in srgb, var(--color-harir) 94%, transparent);
 }
 
 .nav-link {
@@ -265,7 +265,7 @@
   inset-block-end: 0.55rem;
   inset-inline: var(--space-3);
   block-size: 1px;
-  background-color: var(--color-firouzeh-deep);
+  background-color: var(--color-atlas-deep);
   scale: 0 1;
   transform-origin: var(--nav-origin, right);
   transition: scale var(--dur) var(--ease-out);
@@ -287,7 +287,7 @@
   z-index: 60;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-sormeh);
+  background-color: var(--color-makhmal);
   color: var(--color-chalk);
   transform: translate3d(calc(var(--flow-start) * 100%), 0, 0);
   visibility: hidden;
@@ -365,7 +365,7 @@
   border-block-start-color: var(--color-line-dark);
 }
 .gallery-tile:hover .gallery-tile__meta {
-  border-block-start-color: var(--color-firouzeh);
+  border-block-start-color: var(--color-atlas);
 }
 
 /* ---- Lightbox ----------------------------------------------------------- */
@@ -420,3 +420,44 @@
   color: var(--color-chalk);
 }
 
+
+/* ---- Gown view strip ----------------------------------------------------
+   The thumbnails under a gown's primary photograph.
+
+   `cursor: pointer` is explicit and load-bearing. Tailwind v4's preflight
+   follows the CSS spec and gives `button` a `default` cursor, which is correct
+   for a form control and wrong for a control that looks exactly like a
+   photograph — nothing else on a thumbnail says it can be pressed. The source
+   template shipped gallery tiles computing `default` for that reason; this is
+   the same class of element and does not repeat it.
+
+   A row that scrolls rather than wraps: four thumbnails wrapping to a second
+   line under a tall image reads as a second gallery rather than as a strip. */
+
+.view-strip {
+  display: flex;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  /* The strip may scroll; the page must not. */
+  overscroll-behavior-inline: contain;
+}
+
+.view-strip__item {
+  flex: 0 0 auto;
+  inline-size: clamp(4.5rem, 18vw, 6.5rem);
+}
+
+.view-strip__button {
+  display: block;
+  inline-size: 100%;
+  cursor: pointer;
+  border: 1px solid var(--color-line-dark);
+  transition: border-color var(--dur) var(--ease-out);
+}
+.view-strip__button:hover {
+  border-color: var(--color-atlas-bright);
+}

@@ -8,7 +8,9 @@
  */
 
 /** Fixed aspect ratios. Crops are part of the art direction, not per-image
- *  guesswork — an editor picks one, never a raw pixel size. */
+ *  guesswork — an editor picks one, never a raw pixel size. A gown is shot
+ *  standing, so the catalogue frame is `3/4`; the feature slot is the one
+ *  deliberate exception. */
 export type Ratio = "1/1" | "4/5" | "3/4" | "4/3" | "8/5" | "16/9";
 
 export interface MediaAsset {
@@ -69,6 +71,19 @@ export interface Product {
    */
   tone?: string;
   image: MediaAsset;
+  /**
+   * Additional views of the same gown, shown on its detail page only.
+   *
+   * `image` above stays the required primary and is the *only* one any listing,
+   * card, related-product block or share card reads — so a gown with no extra
+   * views renders exactly as it did before this field existed, and nothing
+   * outside the detail page had to change to add it.
+   *
+   * Optional because it is genuinely optional: cosmetics needed one photograph
+   * per product, a gown does not. Every entry should share its primary's
+   * `ratio`, since the thumbnail strip sets one frame for the row.
+   */
+  views?: MediaAsset[];
   /** Optional for the same reason as `tone`. */
   layout?: ProductLayout;
   status: "published" | "draft";
@@ -318,5 +333,16 @@ export interface UiStrings {
     next: string;
     /** Joins position and total, e.g. «۳ از ۶». */
     counterJoin: string;
+  };
+  /**
+   * The detail page's thumbnail strip. A new interactive control, so its
+   * accessible names are content from the start rather than markup moved into
+   * content later (§52).
+   */
+  views: {
+    /** Accessible name of the strip itself, which is a list of controls. */
+    label: string;
+    /** Precedes the position: «نمای ۲». */
+    open: string;
   };
 }

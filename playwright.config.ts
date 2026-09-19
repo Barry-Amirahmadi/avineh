@@ -21,7 +21,14 @@ import { defineConfig, devices } from "@playwright/test";
  */
 const raw = process.env.SMOKE_BASE_PATH ?? "/avineh";
 const BASE_PATH = raw === "/" ? "" : raw.replace(/\/+$/, "");
-const PORT = 4321;
+/**
+ * Overridable because 4321 is the preview port every site built from this
+ * template uses, and more than one of them can be open on a machine at once.
+ * `reuseExistingServer` does not save you there: the squatter answers, but it
+ * answers with a different site under a different base path, so the suite
+ * either fails to start or — worse — passes against the wrong output.
+ */
+const PORT = Number(process.env.SMOKE_PORT ?? 4321);
 
 export default defineConfig({
   testDir: "./tests",

@@ -11,7 +11,7 @@
  * dependencies and adding `sharp` or `resvg` to draw one 1200×630 rectangle is
  * a bad trade. Node's own `zlib` is all a PNG encoder needs.
  *
- * The card is the same art direction as `generate-media.mjs` — sormeh ground,
+ * The card is the same art direction as `generate-media.mjs` — makhmal ground,
  * a defocused tonal mass, light falling from the top-right, which is the RTL
  * reading origin — with the brand mark from `src/app/icon.svg` over it. It
  * carries no type: rendering Persian into a generated raster needs a font
@@ -34,9 +34,9 @@ const W = 1200;
 const H = 630;
 
 /** Kept in sync with src/app/tokens.css and scripts/generate-media.mjs. */
-const SORMEH = [0x14, 0x1a, 0x2b];
-const TONE = [0x7f, 0xb3, 0xac];
-const CHALK = [0xea, 0xe9, 0xe3];
+const MAKHMAL = [0x1c, 0x14, 0x18];
+const TONE = [0xbb, 0xa5, 0x9f];
+const CHALK = [0xe7, 0xe5, 0xe4];
 
 /* -------------------------------------------------------------------------- */
 /*  PNG encoding                                                              */
@@ -130,6 +130,35 @@ function disc(x, y, cx, cy, r) {
 }
 
 /**
+ * Coverage of a convex polygon, by 3×3 supersampling.
+ *
+ * The mark gained a straight-edged shape — the gown silhouette — and a circle's
+ * radial falloff cannot antialias a diagonal. Supersampling is the blunt answer
+ * and the right one here: it runs over a few hundred pixels of one 1200×630
+ * image, once, at build time.
+ *
+ * Convex only, which the mark is. The half-plane test below returns false for
+ * any point outside a single edge, which is exactly the definition of convex.
+ */
+function poly(x, y, points) {
+  let hits = 0;
+  for (let sy = 0; sy < 3; sy++) {
+    for (let sx = 0; sx < 3; sx++) {
+      const px2 = x + (sx + 0.5) / 3;
+      const py2 = y + (sy + 0.5) / 3;
+      let inside = true;
+      for (let i = 0; i < points.length && inside; i++) {
+        const [ax, ay] = points[i];
+        const [bx, by] = points[(i + 1) % points.length];
+        if ((bx - ax) * (py2 - ay) - (by - ay) * (px2 - ax) < 0) inside = false;
+      }
+      if (inside) hits += 1;
+    }
+  }
+  return hits / 9;
+}
+
+/**
  * A defocused mass: gaussian falloff from a centre.
  *
  * Deliberately *not* a wide smoothstep, which is what the first version of this
@@ -169,6 +198,8 @@ const px = [0, 0, 0];
 
 // The brand mark, from src/app/icon.svg: a 32-unit box scaled up and centred
 // slightly right of middle, so it sits under the light rather than opposite it.
+// A tapering column with a point above it — a gown, read at the size a share
+// card is actually seen at, which is about 200px wide in a chat list.
 const MARK = { size: 400, cx: 620, cy: 315 };
 const scale = MARK.size / 32;
 const originX = MARK.cx - MARK.size / 2;
@@ -178,9 +209,9 @@ const markY = (v) => originY + v * scale;
 
 for (let y = 0; y < H; y++) {
   for (let x = 0; x < W; x++) {
-    px[0] = SORMEH[0];
-    px[1] = SORMEH[1];
-    px[2] = SORMEH[2];
+    px[0] = MAKHMAL[0];
+    px[1] = MAKHMAL[1];
+    px[2] = MAKHMAL[2];
 
     // 1 — the tonal fall, top-right to bottom-left.
     const fall = clamp01((x / W) * 0.55 + (1 - y / H) * 0.45);
@@ -192,8 +223,16 @@ for (let y = 0; y < H; y++) {
     over(px, [0, 0, 0], glow(x, y, 120, 690, 330) * 0.24);
 
     // 3 — the mark, the one crisp thing on the card.
-    over(px, TONE, disc(x, y, markX(19), markY(13), 7 * scale));
-    over(px, CHALK, disc(x, y, markX(12), markY(21), 4 * scale) * 0.85);
+    over(
+      px,
+      TONE,
+      poly(x, y, [
+        [markX(16), markY(8)],
+        [markX(20.5), markY(26)],
+        [markX(11.5), markY(26)],
+      ]),
+    );
+    over(px, CHALK, disc(x, y, markX(16), markY(6), 2.6 * scale) * 0.85);
 
     // 4 — the light source at 78% / 18%, and the vignette that closes it.
     // Both smooth for the same reason as the masses above: the earlier version

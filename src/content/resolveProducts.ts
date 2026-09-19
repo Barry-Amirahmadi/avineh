@@ -6,10 +6,10 @@ import type { Product, ProductLayout, ResolvedProduct } from "@/types/content";
  * Both `tone` and `layout` do real design work — one drives the ambient shade
  * wash, the other the showcase rhythm — but neither is something a content
  * editor should be *required* to think about. The moment a CMS lets someone
- * save a product without them, an undefined value would either blank the
+ * save a gown without them, an undefined value would either blank the
  * page's atmosphere or crash the arrangement lookup.
  *
- * Every product reaching a component goes through here, so the rules live in
+ * Every gown reaching a component goes through here, so the rules live in
  * one place and the components stay free of `?? fallback` noise.
  */
 
@@ -21,10 +21,10 @@ import type { Product, ProductLayout, ResolvedProduct } from "@/types/content";
  * forbids reintroducing (§36.8, "incorrect product image-side alternation"):
  * `wide` and `compact` both sit on the left of the grid, so placing them
  * adjacently produces two left-hand images in a row — the exact rhythm problem
- * that was found and fixed in Phase 01.
+ * that was found and fixed in the template this derives from.
  *
  * Moving `feature` between them keeps all four arrangements, keeps the cycle
- * length at four, and means no two neighbouring products ever share a side —
+ * length at four, and means no two neighbouring gowns ever share a side —
  * including across the wrap from the last back to the first:
  *
  *   tall(right) → wide(left) → feature(full width) → compact(left) → tall(right) …
@@ -35,16 +35,16 @@ import type { Product, ProductLayout, ResolvedProduct } from "@/types/content";
 const LAYOUT_CYCLE: readonly ProductLayout[] = ["tall", "wide", "feature", "compact"];
 
 /**
- * Shade for a product with no `tone`.
+ * Cloth colour for a gown with no `tone`.
  *
  * Deliberately a near-neutral deepening of the dark ground rather than an
- * invented colour: a product whose shade nobody chose should read as having no
+ * invented colour: a gown whose cloth nobody named should read as having no
  * particular atmosphere, not as having the wrong one. It also cannot reduce
  * text contrast, since it is darker than the ground it washes over.
  *
  * Kept in sync with the `@property --shade` initial-value in tokens.css.
  */
-export const FALLBACK_TONE = "#2A3550";
+export const FALLBACK_TONE = "#3A2C32";
 
 export function resolveProduct(product: Product, index: number): ResolvedProduct {
   return {

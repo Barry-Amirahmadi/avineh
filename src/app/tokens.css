@@ -1,72 +1,89 @@
 /* ============================================================================
-   PARNIAN — DESIGN TOKENS
+   AVINEH — DESIGN TOKENS
    Single source of truth. Nothing in the app may hardcode a colour, a size,
    a duration or an easing curve; it references a token from this file.
 
-   Palette rationale — the colours are named from the subject's own world:
-     بُن  / bone     unglazed porcelain, the ground the brand speaks on
-     سُرمه / sormeh   Persian kohl — the oldest cosmetic in the region.
-                     "سرمه‌ای" is literally a Persian colour word.
-     فیروزه / firouzeh Persian turquoise, desaturated to a mineral sage.
+   Palette rationale — the colours are named from the subject's own world, the
+   three materials a gown is actually made of:
+     حریر  / harir    fine silk gauze, the ground the brand speaks on
+     مخمل  / makhmal  velvet — the only cloth that absorbs light rather than
+                      returning it, which is exactly what a dark ground does
+     اطلس  / atlas    satin, in a dusty champagne. Sheen, never metal.
    One accent only. No pink, no rose gold, no metallic gradient.
+
+   **Every ratio below is measured, not estimated.** The accent's seed value
+   `#A88B84` was specified for this site and measured 2.81:1 against `harir` —
+   under the 3:1 floor a rule or a large heading needs. It was darkened along
+   its own hue and saturation, hsl(11.7, 17.1%), until it passed against the
+   *darkest* light ground, which is `harir-deep`, not `harir`: a dark accent
+   has its worst light-side contrast against the deepest of the three planes,
+   so clearing that one clears all three.
    ========================================================================= */
 
 @theme {
   /* ---- Colour: light ground ------------------------------------------- */
-  --color-bone: #eae9e3; /* primary page ground */
-  --color-bone-deep: #dddbd2; /* secondary ground, image mats */
-  --color-bone-raised: #f3f2ee; /* raised surface */
+  --color-harir: #f4f2f1; /* primary page ground */
+  --color-harir-deep: #e6e2e1; /* secondary ground, image mats */
+  --color-harir-raised: #fbfafa; /* raised surface */
 
   /* ---- Colour: dark ground -------------------------------------------- */
-  --color-sormeh: #141a2b; /* primary dark ground + primary ink */
-  --color-sormeh-deep: #0d1220; /* deepest ground, closing CTA */
-  --color-sormeh-raised: #1e2539; /* raised surface on dark */
+  --color-makhmal: #1c1418; /* primary dark ground + primary ink */
+  --color-makhmal-deep: #140e11; /* deepest ground, closing CTA */
+  --color-makhmal-raised: #291f24; /* raised surface on dark */
 
   /* ---- Colour: text ---------------------------------------------------- */
-  --color-ink: #141a2b; /* on light — 15.5:1 */
-  --color-ink-2: #545c6e; /* body — 5.5:1 on bone, 4.8:1 on bone-deep */
-  --color-ink-3: #565c6c; /* metadata — 5.4:1 on bone, 4.8:1 on bone-deep */
-  --color-chalk: #e3e2dc; /* on dark  — 13.4:1 */
-  --color-chalk-2: #9ba2b0; /* on dark  —  6.8:1 */
+  --color-ink: #1c1418; /* on light — 16.2:1 on harir, 14.0:1 on harir-deep */
+  --color-ink-2: #675d5b; /* body — 5.7:1 on harir, 5.0:1 on harir-deep */
+  --color-ink-3: #6c6260; /* metadata — 5.3:1 on harir, 4.6:1 on harir-deep */
+  --color-chalk: #e7e5e4; /* on dark — 14.4:1 on makhmal, 12.7:1 on raised */
+  --color-chalk-2: #aaa09d; /* on dark —  7.1:1 on makhmal,  6.3:1 on raised */
 
   /* ---- Colour: accent --------------------------------------------------- */
-  --color-firouzeh: #5f8a85; /* 3.2:1 — large text, rules, non-text UI only */
-  --color-firouzeh-deep: #3f6864; /* 5.1:1 — safe for small text on light */
-  --color-firouzeh-bright: #7fb3ac; /* 7.4:1 — accent on dark ground */
+  --color-atlas: #9a7870; /* 3.6:1 harir · 3.1:1 harir-deep — large text, rules, non-text UI only */
+  --color-atlas-deep: #745952; /* 5.7:1 harir · 5.0:1 harir-deep — safe for small text */
+  --color-atlas-bright: #bba59f; /* 7.7:1 makhmal · 6.8:1 makhmal-raised — accent on dark */
 
   /* ---- Colour: lines ---------------------------------------------------- */
-  --color-line: color-mix(in srgb, #141a2b 14%, transparent);
-  --color-line-strong: color-mix(in srgb, #141a2b 30%, transparent);
-  --color-line-dark: color-mix(in srgb, #e3e2dc 16%, transparent);
-  --color-line-dark-strong: color-mix(in srgb, #e3e2dc 34%, transparent);
+  --color-line: color-mix(in srgb, #1c1418 14%, transparent);
+  --color-line-strong: color-mix(in srgb, #1c1418 30%, transparent);
+  --color-line-dark: color-mix(in srgb, #e7e5e4 16%, transparent);
+  --color-line-dark-strong: color-mix(in srgb, #e7e5e4 34%, transparent);
 
   /* ---- Colour: state ---------------------------------------------------- */
-  --color-focus: #3f6864;
-  --color-focus-dark: #7fb3ac;
+  --color-focus: #745952; /* 5.7:1 on harir — well over the 3:1 a ring needs */
+  --color-focus-dark: #bba59f; /* 7.7:1 on makhmal */
 
   /* ---- Type families ----------------------------------------------------
-     Markazi Text  — Persian Naskh with calligraphic contrast. Display only.
-     Vazirmatn     — neutral Persian/Latin sans. Body, UI, all small sizes.
+     Mirza      — Nastaliq-inflected Persian Naskh, long descenders. Display only.
+     Vazirmatn  — neutral Persian/Latin sans. Body, UI, all small sizes.
      Wired to next/font in layout.tsx; the vars are declared there.          */
-  --font-display: var(--font-markazi), "Markazi Text", serif;
+  --font-display: var(--font-mirza), "Mirza", serif;
   --font-body: var(--font-vazir), "Vazirmatn", system-ui, sans-serif;
 
-  /* ---- Type scale — fluid, no breakpoint jumps -------------------------- */
-  --text-display: clamp(2.75rem, 6.2vw, 5.5rem);
-  --text-h1: clamp(2.25rem, 5vw, 4rem);
-  --text-h2: clamp(2rem, 4.4vw, 3.5rem);
-  --text-h3: clamp(1.375rem, 2.2vw, 2rem);
+  /* ---- Type scale — fluid, no breakpoint jumps --------------------------
+     Shifted up from the source template: Mirza sets a visibly smaller image
+     than Markazi Text at the same px, because its x-height is lower and its
+     letterforms lean. Matching the *optical* size, not the number, is what
+     keeps the display voice as loud as it was.                              */
+  --text-display: clamp(3rem, 6.8vw, 6rem);
+  --text-h1: clamp(2.5rem, 5.4vw, 4.375rem);
+  --text-h2: clamp(2.125rem, 4.8vw, 3.75rem);
+  --text-h3: clamp(1.5rem, 2.4vw, 2.125rem);
   --text-lead: clamp(1.0625rem, 1.5vw, 1.3125rem);
   --text-body: 1.0625rem; /* 17px — Persian reads small at 16 */
   --text-sm: 0.9375rem;
   --text-meta: 0.8125rem;
   --text-micro: 0.6875rem; /* Latin labels only, always tracked */
 
-  /* ---- Line height — Persian needs more air than Latin ------------------ */
-  --leading-display: 1.16; /* Markazi is compact; tight is safe here */
-  --leading-heading: 1.34;
-  --leading-body: 1.95;
-  --leading-tight: 1.6;
+  /* ---- Line height ------------------------------------------------------
+     Display is 1.5, not the 1.16 a compact Naskh allowed. Mirza's descenders
+     run far below the baseline and its ascenders far above; at 1.16 a
+     two-line Persian heading collides with itself. This is the one number in
+     this file that is a hard floor rather than a preference.                */
+  --leading-display: 1.5;
+  --leading-heading: 1.5;
+  --leading-body: 2.05; /* airier than the source — a gown needs room */
+  --leading-tight: 1.7;
 
   /* ---- Spacing scale ---------------------------------------------------- */
   --space-1: 0.25rem;
@@ -81,9 +98,12 @@
   --space-10: 8rem;
   --space-11: 12rem;
 
-  /* ---- Layout rhythm ---------------------------------------------------- */
-  --section-y: clamp(5.5rem, 11vw, 11rem);
-  --section-y-tight: clamp(3.5rem, 7vw, 7rem);
+  /* ---- Layout rhythm ----------------------------------------------------
+     Roughly 20% more air between bands than the source template. A gown is
+     photographed standing and read whole; crowding one against the next band
+     is the single fastest way to make an atelier look like a catalogue.      */
+  --section-y: clamp(6.5rem, 13vw, 13rem);
+  --section-y-tight: clamp(4.25rem, 8.5vw, 8.5rem);
   --gutter: clamp(1.25rem, 4.5vw, 4.5rem); /* page padding */
   --grid-gap: clamp(1rem, 2vw, 2rem);
   --container-max: 1560px;
@@ -96,8 +116,8 @@
   --radius-full: 999px;
 
   /* ---- Elevation — used sparingly; this design leans on rules, not shadow */
-  --shadow-lift: 0 1px 2px color-mix(in srgb, #141a2b 6%, transparent),
-    0 16px 40px -24px color-mix(in srgb, #141a2b 30%, transparent);
+  --shadow-lift: 0 1px 2px color-mix(in srgb, #1c1418 6%, transparent),
+    0 16px 40px -24px color-mix(in srgb, #1c1418 30%, transparent);
 
   /* ---- Motion ----------------------------------------------------------- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -133,5 +153,5 @@
 @property --shade {
   syntax: "<color>";
   inherits: true;
-  initial-value: #2a3550;
+  initial-value: #3a2c32;
 }

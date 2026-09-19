@@ -34,7 +34,7 @@
 
   body {
     margin: 0;
-    background-color: var(--color-bone);
+    background-color: var(--color-harir);
     color: var(--color-ink);
     font-family: var(--font-body);
     font-size: var(--text-body);
@@ -49,7 +49,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-firouzeh) 34%, transparent);
+    background-color: color-mix(in srgb, var(--color-atlas) 34%, transparent);
     color: var(--color-ink);
   }
 
@@ -221,17 +221,17 @@
   /* ---- Grounds ---------------------------------------------------------- */
 
   .ground-light {
-    background-color: var(--color-bone);
+    background-color: var(--color-harir);
   }
   .ground-light-deep {
-    background-color: var(--color-bone-deep);
+    background-color: var(--color-harir-deep);
   }
   .ground-dark {
-    background-color: var(--color-sormeh);
+    background-color: var(--color-makhmal);
     color: var(--color-chalk);
   }
   .ground-darkest {
-    background-color: var(--color-sormeh-deep);
+    background-color: var(--color-makhmal-deep);
     color: var(--color-chalk);
   }
 
@@ -241,16 +241,18 @@
      ever used, so nothing on the page sat *on* anything: every element lay
      flat on its section, and the page read as a stack of coloured bands.
 
-     `--color-bone-raised` was defined and referenced exactly zero times before
-     this. The light steps are also narrow by design — bone is 90% lightness
-     and bone-deep 84% — so the separation cannot come from fill alone at this
-     end of the scale. It comes from a hairline and one shallow shadow, which
-     is also what this design already prefers: rules, not cards.
+     `--color-harir-raised` was defined and referenced exactly zero times in the
+     template this derives from. The light steps are also narrow by design —
+     harir is 95% lightness and harir-deep 89% — so the separation cannot come
+     from fill alone at this end of the scale. It comes from a hairline and one
+     shallow shadow, which is also what this design already prefers: rules, not
+     cards. The steps here are *narrower still* than the template's, because
+     this palette is barely tinted at all, which makes the hairline carry even
+     more of the work.
 
-     Measured symptom this fixes: on the gallery band the section ground and
-     the image mat were both `rgb(221,219,210)` — the same colour — so the mat
-     did nothing at all. On dark the two already differed and only want the
-     hairline.
+     Measured symptom this fixes in the source template: on the gallery band the
+     section ground and the image mat were the same colour, so the mat did
+     nothing at all. On dark the two already differ and only want the hairline.
 
        .plane-raised   an object on the page: panels, standing surfaces
        (ground)        the page itself
@@ -260,12 +262,12 @@
      raised plane here is a sheet of paper on a desk, not a card in a UI kit. */
 
   .plane-raised {
-    background-color: var(--color-bone-raised);
+    background-color: var(--color-harir-raised);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-lift);
   }
   .on-dark .plane-raised {
-    background-color: var(--color-sormeh-raised);
+    background-color: var(--color-makhmal-raised);
     border-color: var(--color-line-dark);
     /* An ink shadow on a near-black ground is invisible; the hairline is the
        whole effect on this side. */
@@ -273,10 +275,10 @@
   }
 
   .plane-inset {
-    background-color: var(--color-bone-deep);
+    background-color: var(--color-harir-deep);
   }
   .on-dark .plane-inset {
-    background-color: var(--color-sormeh-deep);
+    background-color: var(--color-makhmal-deep);
   }
 
   /* ---- Motion ----------------------------------------------------------- */
@@ -309,12 +311,12 @@
        the wrong thing for that moment to look like. It also has to separate
        from a `light-deep` section, which the old mat could not: they were the
        same colour. */
-    background-color: var(--color-bone-raised);
+    background-color: var(--color-harir-raised);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-lift);
   }
   .on-dark .img-frame {
-    background-color: var(--color-sormeh-raised);
+    background-color: var(--color-makhmal-raised);
     border-color: var(--color-line-dark);
     box-shadow: none;
   }
@@ -432,7 +434,7 @@
   inset-inline-start: var(--space-3);
   z-index: 100;
   transform: translateY(-200%);
-  background-color: var(--color-sormeh);
+  background-color: var(--color-makhmal);
   color: var(--color-chalk);
   padding: var(--space-3) var(--space-5);
   font-size: var(--text-meta);

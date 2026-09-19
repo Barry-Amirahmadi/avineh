@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Markazi_Text, Vazirmatn } from "next/font/google";
+import { Mirza, Vazirmatn } from "next/font/google";
 import { site } from "@/content/site";
 import { ui } from "@/content/ui";
 import { organizationSchema } from "@/content/schema";
@@ -15,19 +15,20 @@ import "./globals.css";
  * Iranian users: no third-party font request to be slow or blocked, and no
  * layout shift while a webfont negotiates.
  *
- * Markazi Text — Persian Naskh with calligraphic contrast. Display only.
+ * Mirza        — Nastaliq-inflected Persian Naskh, long descenders. Display only.
  * Vazirmatn    — neutral Persian sans. Everything else.
  *
- * **Both subsets on both faces. Do not "optimise" Markazi down to `arabic`** —
+ * **Both subsets on both faces. Do not "optimise" the display face down to
+ * `arabic`** —
  * that was tried in Phase 04 and measured, and it makes the page slower.
  *
  * The reasoning that suggests it is sound and wrong: nothing on this site sets
  * Latin in the display face, because the Latin half of the wordmark and every
- * micro-label are `.t-label`, which is `--font-body`. Walking all six routes
- * for an element computing to Markazi with Latin text in it finds none.
+ * micro-label are `.t-label`, which is `--font-body`. Walking every route for
+ * an element computing to Mirza with Latin text in it finds none.
  *
- * But Google splits these faces by unicode range, and Markazi's `arabic` subset
- * covers `U+0600-06FF` and friends — **it does not contain `U+0020`**. The space
+ * But Google splits these faces by unicode range, and the `arabic` subset covers
+ * `U+0600-06FF` and friends — **it does not contain `U+0020`**. The space
  * character, the em-dash and the rest of general punctuation live in the `latin`
  * subset. Every Persian heading on the site has spaces in it, so the browser
  * downloads that file either way. Dropping the subset only removes its
@@ -35,9 +36,12 @@ import "./globals.css";
  * discovered after layout — the same bytes, arriving in time to cause a visible
  * swap on the largest type on the page.
  */
-const markazi = Markazi_Text({
+const mirza = Mirza({
   subsets: ["arabic", "latin"],
-  variable: "--font-markazi",
+  /* Mirza is not a variable font, so next/font requires the weights named.
+     400 is the display voice; 500 is the one step up the wordmark uses. */
+  weight: ["400", "500"],
+  variable: "--font-mirza",
   display: "swap",
 });
 
@@ -63,10 +67,20 @@ export const metadata: Metadata = {
     template: site.seo.titleTemplate,
   },
   description: site.seo.description,
+  /**
+   * The half of the exclusion that a crawler obeys.
+   *
+   * `robots.txt` asks a crawler not to *fetch* a page; a page already known
+   * from a link elsewhere can still be listed from that link alone. `noindex`
+   * is a directive on the page itself and is the one that keeps it out of an
+   * index. Inherited by every route, because every route composes its metadata
+   * on top of this object.
+   */
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eae9e3",
+  themeColor: "#f4f2f1",
   colorScheme: "light",
 };
 
@@ -75,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fa"
       dir="rtl"
-      className={`${vazirmatn.variable} ${markazi.variable}`}
+      className={`${vazirmatn.variable} ${mirza.variable}`}
       /* The inline script below stamps data-js before React hydrates; that is
          the point of it, so the resulting attribute difference is expected. */
       suppressHydrationWarning

@@ -29,13 +29,6 @@ export function absoluteUrl(path = "/"): string {
   return `${siteRoot}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/**
- * The crawlable root, as a path. `/` at the origin, `/repo/` under a base path.
- * robots.txt takes paths rather than URLs, so this is the one place the base
- * path is needed on its own.
- */
-export const basePathForRobots = basePath ? `${basePath}/` : "/";
-
 const ogImage = {
   url: absoluteUrl(site.seo.ogImage.src),
   width: site.seo.ogImage.width,
