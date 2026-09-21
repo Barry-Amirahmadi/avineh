@@ -1,35 +1,113 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1400" viewBox="0 0 1050 1400" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="504.0" height="672.0" viewBox="273.0 196.0 504.0 672.0" role="img">
   <defs>
-    <radialGradient id="light" cx="78%" cy="18%" r="88%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
-      <stop offset="52%" stop-color="#FFFFFF" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
-    </radialGradient>
-    <linearGradient id="fall" x1="1" y1="0" x2="0.1" y2="1">
-      <stop offset="0%" stop-color="#3A3238" stop-opacity="0.92"/>
-      <stop offset="100%" stop-color="#3A3238" stop-opacity="0.34"/>
+    <linearGradient id="cloth" x1="0.82" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#6E6572" stop-opacity="1"/>
+      <stop offset="46%" stop-color="#6E6572" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#6E6572" stop-opacity="0.52"/>
     </linearGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="136.5"/>
+    <linearGradient id="sheen" x1="0.9" y1="0.05" x2="0.35" y2="0.95">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="62%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </linearGradient>
+    <!-- The same satin, mapped to the CANVAS instead of to each shape's own
+         box. The body wears this gradient stretched across the whole frame, so
+         a strap wearing it stretched across its own few pixels gets the entire
+         light-to-dark run compressed into itself, and comes out darker than the
+         cloth it is sewn to — آذین's wide pair read as two epaulettes. Light
+         falls on a garment from one direction, not from each piece's corner.
+         NOTE: no backticks in here. This comment is inside a template literal. -->
+    <linearGradient id="sheen-user" gradientUnits="userSpaceOnUse" x1="945.0" y1="70.0" x2="367.5" y2="1330.0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="62%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="key" cx="80%" cy="10%" r="92%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.13"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </radialGradient>
+    <radialGradient id="floor" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="body"><path d="M 698.3 175.0 Q 525.0 70.0 351.8 175.0 C 365.6 420.0 386.7 490.0 393.3 546.0 C 360.4 771.4 344.1 1093.4 324.0 1351.0 Q 525.0 1400.0 726.0 1351.0 C 705.9 1093.4 689.6 771.4 656.7 546.0 C 663.3 490.0 684.4 420.0 698.3 175.0 Z"/></clipPath>
+    <filter id="soften" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.68"/>
     </filter>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="162" result="n"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="163" result="n"/>
       <feColorMatrix type="saturate" values="0" in="n" result="g"/>
       <feComponentTransfer in="g" result="gt">
-        <feFuncA type="linear" slope="0.5"/>
+        <feFuncA type="linear" slope="0.18"/>
       </feComponentTransfer>
       <feBlend in="SourceGraphic" in2="gt" mode="overlay"/>
     </filter>
   </defs>
 
   <g filter="url(#grain)">
-    <rect width="1050" height="1400" fill="#1C1418"/>
-    <rect width="1050" height="1400" fill="url(#fall)" opacity="0.55"/>
-    <g filter="url(#soft)">
-      <ellipse cx="546" cy="616" rx="326" ry="417" fill="#3A3238" opacity="0.85"/>
-      <ellipse cx="683" cy="424" rx="163" ry="142" fill="#FFFFFF" opacity="0.26"/>
-      <ellipse cx="344" cy="824" rx="228" ry="167" fill="#000000" opacity="0.2"/>
+    <rect x="0" y="0" width="1050" height="1400" fill="#231017"/>
+
+    <!-- The cloth the gown is standing on. -->
+    <ellipse cx="525.0" cy="1351.0" rx="582.1" ry="44.8" fill="url(#floor)"/>
+
+    <g filter="url(#soften)">
+      
+      
+      <path d="M 698.3 175.0 Q 525.0 70.0 351.8 175.0 C 365.6 420.0 386.7 490.0 393.3 546.0 C 360.4 771.4 344.1 1093.4 324.0 1351.0 Q 525.0 1400.0 726.0 1351.0 C 705.9 1093.4 689.6 771.4 656.7 546.0 C 663.3 490.0 684.4 420.0 698.3 175.0 Z" fill="url(#cloth)"/>
+
+      <g clip-path="url(#body)">
+        <path d="M 432.6 560.0 C 428.8 819.7 352.5 1038.0 348.7 1311.7" fill="none" stroke="url(#fold)" stroke-width="8.6" stroke-linecap="round"/>
+      <path d="M 459.7 560.0 C 465.1 819.7 395.1 988.9 400.5 1262.6" fill="none" stroke="url(#fold)" stroke-width="10.3" stroke-linecap="round"/>
+      <path d="M 494.1 560.0 C 507.5 819.7 452.8 938.5 466.1 1212.2" fill="none" stroke="url(#fold)" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M 528.6 560.0 C 514.1 819.7 546.4 1041.6 531.9 1315.3" fill="none" stroke="url(#fold)" stroke-width="7.3" stroke-linecap="round"/>
+      <path d="M 556.9 560.0 C 533.5 819.7 609.3 956.1 585.9 1229.8" fill="none" stroke="url(#fold)" stroke-width="5.4" stroke-linecap="round"/>
+      <path d="M 581.7 560.0 C 589.5 819.7 625.5 1013.2 633.2 1286.9" fill="none" stroke="url(#fold)" stroke-width="10.1" stroke-linecap="round"/>
+      <path d="M 611.6 560.0 C 620.7 819.7 681.1 1013.5 690.2 1287.2" fill="none" stroke="url(#fold)" stroke-width="8.3" stroke-linecap="round"/>
+        <circle cx="589.6" cy="360.5" r="2.01" fill="#FFFFFF" opacity="0.30"/>
+      <circle cx="452.6" cy="337.0" r="3.76" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="433.4" cy="282.3" r="2.84" fill="#FFFFFF" opacity="0.36"/>
+      <circle cx="427.1" cy="416.7" r="3.88" fill="#FFFFFF" opacity="0.39"/>
+      <circle cx="405.5" cy="382.4" r="3.88" fill="#FFFFFF" opacity="0.33"/>
+      <circle cx="464.8" cy="493.3" r="3.01" fill="#FFFFFF" opacity="0.30"/>
+      <circle cx="623.2" cy="244.9" r="2.38" fill="#FFFFFF" opacity="0.43"/>
+      <circle cx="525.3" cy="457.4" r="3.97" fill="#FFFFFF" opacity="0.44"/>
+      <circle cx="625.6" cy="417.0" r="1.89" fill="#FFFFFF" opacity="0.49"/>
+      <circle cx="543.0" cy="333.3" r="3.69" fill="#FFFFFF" opacity="0.25"/>
+      <circle cx="518.0" cy="306.2" r="3.75" fill="#FFFFFF" opacity="0.51"/>
+      <circle cx="582.7" cy="460.2" r="3.55" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="568.9" cy="472.3" r="2.19" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="490.4" cy="235.3" r="4.19" fill="#FFFFFF" opacity="0.56"/>
+      <circle cx="412.0" cy="396.0" r="2.08" fill="#FFFFFF" opacity="0.45"/>
+      <circle cx="602.5" cy="224.2" r="3.93" fill="#FFFFFF" opacity="0.21"/>
+      <circle cx="470.9" cy="298.6" r="2.06" fill="#FFFFFF" opacity="0.32"/>
+      <circle cx="591.5" cy="432.3" r="3.47" fill="#FFFFFF" opacity="0.22"/>
+      <circle cx="429.7" cy="497.1" r="3.15" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="606.1" cy="228.3" r="3.29" fill="#FFFFFF" opacity="0.55"/>
+      <circle cx="643.0" cy="352.1" r="1.70" fill="#FFFFFF" opacity="0.27"/>
+      <circle cx="510.5" cy="260.9" r="1.89" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="431.9" cy="237.5" r="2.45" fill="#FFFFFF" opacity="0.41"/>
+      <circle cx="593.0" cy="537.7" r="3.04" fill="#FFFFFF" opacity="0.24"/>
+      <circle cx="590.6" cy="359.6" r="2.33" fill="#FFFFFF" opacity="0.57"/>
+      <circle cx="446.1" cy="498.6" r="2.11" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="524.0" cy="540.9" r="2.41" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="463.6" cy="396.4" r="3.19" fill="#FFFFFF" opacity="0.21"/>
+      <circle cx="430.8" cy="282.3" r="4.35" fill="#FFFFFF" opacity="0.42"/>
+      <circle cx="475.0" cy="212.1" r="1.71" fill="#FFFFFF" opacity="0.33"/>
+        
+        <rect x="0" y="0" width="1050" height="1400" fill="url(#sheen)"/>
+      </g>
+
+      
     </g>
-    <rect width="1050" height="1400" fill="url(#light)"/>
+
+    <rect x="0" y="0" width="1050" height="1400" fill="url(#key)"/>
   </g>
 </svg>

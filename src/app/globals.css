@@ -34,8 +34,13 @@
 
   body {
     margin: 0;
-    background-color: var(--color-harir);
-    color: var(--color-ink);
+    /* Dark is the primary ground now, so this is the page's own colour rather
+       than a fallback nobody sees. It shows in overscroll and behind any gap
+       between sections; leaving it light put a bright flash at both ends of
+       every scroll. Every section still declares its own ground explicitly —
+       nothing on this site inherits its ground from here. */
+    background-color: var(--color-shab);
+    color: var(--color-chalk);
     font-family: var(--font-body);
     font-size: var(--text-body);
     line-height: var(--leading-body);
@@ -49,7 +54,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-atlas) 34%, transparent);
+    background-color: color-mix(in srgb, var(--color-berenj) 40%, transparent);
     color: var(--color-ink);
   }
 
@@ -220,19 +225,98 @@
 
   /* ---- Grounds ---------------------------------------------------------- */
 
+  /* ---- Cloth -------------------------------------------------------------
+     A site about cloth whose largest surface had no material on it at all.
+
+     Drawn with repeating gradients rather than a tiled image on purpose: a
+     bitmap or SVG weave has a fixed pixel pitch, so every browser zoom step
+     and every non-integer devicePixelRatio resamples it and it beats against
+     itself — moiré, which is exactly the artefact a fabric texture must not
+     produce. Gradients are re-rasterised at the new scale instead, so the
+     weave stays a weave at 50% and at 400%.
+
+     Three passes, because one direction reads as corduroy rather than cloth:
+     warp, weft, and the diagonal that makes it twill. Alpha is 2–3.5%, which
+     moves the ground's luminance by under half a percent — every contrast
+     ratio in tokens.css was measured against the flat colour and still holds
+     over the weave. Verified by sampling the rendered page, not assumed. */
+
+  .ground-light,
+  .ground-light-deep,
+  .ground-dark,
+  .ground-darkest {
+    background-repeat: repeat;
+    background-blend-mode: normal;
+  }
+
+  .ground-light,
+  .ground-light-deep {
+    --weave: color-mix(in srgb, var(--color-ink) 4%, transparent);
+    --weave-soft: color-mix(in srgb, var(--color-ink) 2.5%, transparent);
+    background-image:
+      repeating-linear-gradient(90deg, var(--weave-soft) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(0deg, var(--weave-soft) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(45deg, var(--weave) 0 1px, transparent 1px 6px);
+  }
+
   .ground-light {
-    background-color: var(--color-harir);
+    background-color: var(--color-varagh);
   }
   .ground-light-deep {
-    background-color: var(--color-harir-deep);
+    background-color: var(--color-varagh-deep);
   }
-  .ground-dark {
-    background-color: var(--color-makhmal);
+
+  /* On the dark side the cloth is satin, so it gets a fourth pass the light
+     side does not: a single broad sheen from the top right, which is the RTL
+     reading origin and the same key light every generated image is lit by.
+     Satin is defined by returning light in one direction; a dark ground with
+     no sheen is matte paint, and matte paint is what the page read as. */
+  .ground-dark,
+  .ground-darkest {
+    --weave: color-mix(in srgb, var(--color-chalk) 3.5%, transparent);
+    --weave-soft: color-mix(in srgb, var(--color-chalk) 2%, transparent);
     color: var(--color-chalk);
+    background-image:
+      radial-gradient(
+        120% 80% at 82% 4%,
+        color-mix(in srgb, var(--color-chalk) 5%, transparent),
+        transparent 62%
+      ),
+      repeating-linear-gradient(90deg, var(--weave-soft) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(0deg, var(--weave-soft) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(45deg, var(--weave) 0 1px, transparent 1px 6px);
+  }
+
+  .ground-dark {
+    background-color: var(--color-shab);
   }
   .ground-darkest {
-    background-color: var(--color-makhmal-deep);
-    color: var(--color-chalk);
+    background-color: var(--color-shab-deep);
+  }
+
+  /* ---- Collection pigment bands ------------------------------------------
+     The one place the three collection colours are allowed to exist. A band
+     re-points `--pigment`, and everything that opts into the pigment — the
+     eyebrow tick, the stitch divider, the index marker — follows without
+     knowing which collection it is in. Type is never re-coloured: the whole
+     restraint of a three-chroma palette is that the chroma is in the air and
+     not in the words. */
+
+  .band {
+    background-color: var(--pigment-ground);
+  }
+
+  .band--morvarid {
+    --pigment: var(--color-morvarid-mark);
+    --pigment-ground: var(--color-morvarid-ground);
+  }
+  .band--sabz {
+    --pigment: var(--color-sabz-mark);
+    --pigment-ground: var(--color-sabz-ground);
+  }
+  .band--zereshk {
+    --pigment: var(--color-zereshk-mark);
+    --pigment-ground: var(--color-zereshk-ground);
   }
 
   /* ---- Depth ------------------------------------------------------------
@@ -241,7 +325,7 @@
      ever used, so nothing on the page sat *on* anything: every element lay
      flat on its section, and the page read as a stack of coloured bands.
 
-     `--color-harir-raised` was defined and referenced exactly zero times in the
+     `--color-varagh-raised` was defined and referenced exactly zero times in the
      template this derives from. The light steps are also narrow by design —
      harir is 95% lightness and harir-deep 89% — so the separation cannot come
      from fill alone at this end of the scale. It comes from a hairline and one
@@ -262,12 +346,12 @@
      raised plane here is a sheet of paper on a desk, not a card in a UI kit. */
 
   .plane-raised {
-    background-color: var(--color-harir-raised);
+    background-color: var(--color-varagh-raised);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-lift);
   }
   .on-dark .plane-raised {
-    background-color: var(--color-makhmal-raised);
+    background-color: var(--color-shab-raised);
     border-color: var(--color-line-dark);
     /* An ink shadow on a near-black ground is invisible; the hairline is the
        whole effect on this side. */
@@ -275,10 +359,10 @@
   }
 
   .plane-inset {
-    background-color: var(--color-harir-deep);
+    background-color: var(--color-varagh-deep);
   }
   .on-dark .plane-inset {
-    background-color: var(--color-makhmal-deep);
+    background-color: var(--color-shab-deep);
   }
 
   /* ---- Motion ----------------------------------------------------------- */
@@ -311,12 +395,12 @@
        the wrong thing for that moment to look like. It also has to separate
        from a `light-deep` section, which the old mat could not: they were the
        same colour. */
-    background-color: var(--color-harir-raised);
+    background-color: var(--color-varagh-raised);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-lift);
   }
   .on-dark .img-frame {
-    background-color: var(--color-makhmal-raised);
+    background-color: var(--color-shab-raised);
     border-color: var(--color-line-dark);
     box-shadow: none;
   }
@@ -402,6 +486,132 @@
     background-color: var(--color-line-dark);
   }
 
+  /* ---- The running stitch ------------------------------------------------
+     Section boundaries are sewn, not ruled.
+
+     The dash pitch is `--stitch-pitch` from tokens.css, the same number the
+     tape's graduation interval is derived from, so the two signature devices
+     stay one system. A hand running stitch is not symmetric — the stitch on
+     the face is longer than the gap — so the dash is 1.0 and the gap 0.72 of
+     the pitch rather than an even 50/50, which is what makes it read as
+     sewing rather than as a CSS dashed border.
+
+     Drawn as a background rather than `border-style: dashed` because a dashed
+     border's dash length is chosen by the browser from the border width, and
+     cannot be set. */
+
+  .rule--stitch {
+    height: 2px;
+    background-color: transparent;
+    background-image: repeating-linear-gradient(
+      to left,
+      var(--pigment) 0 var(--stitch-pitch),
+      transparent var(--stitch-pitch) calc(var(--stitch-pitch) * 1.72)
+    );
+    opacity: 0.55;
+  }
+  .on-dark .rule--stitch {
+    background-color: transparent;
+  }
+
+  /* ---- The tape ----------------------------------------------------------
+     The signature. The atelier's whole claim is «اندازه، نه سایز» — the
+     pattern is cut on your measurements — and the instrument that claim is
+     made with is a tape measure. So the page carries one down its edge.
+
+     Scroll-linked with `animation-timeline: scroll()`, which means NO
+     JavaScript: no listener, no rAF, no hydration cost, and it cannot desync
+     from the scroll position because it is not sampling it. Browsers without
+     scroll-driven animations get a static tape with the indicator parked at
+     the top, which is a tape — the fallback is the thing itself, minus the
+     tracking.
+
+     Decorative, so `aria-hidden` at the call site: it duplicates the scrollbar
+     semantically and announcing it would be noise. Hidden below `lg`, where
+     the gutter is too narrow to give it room without stealing it from text. */
+
+  .tape {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--tape-width);
+    z-index: 30;
+    pointer-events: none;
+    display: none;
+    /* The graduation itself: a fine tick every `--tape-step`. */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--color-line-dark) 0 1px,
+      transparent 1px var(--tape-step)
+    );
+    background-position: 100% 0;
+    background-size: 0.5rem 100%;
+    background-repeat: repeat-y;
+    border-inline-end: 1px solid var(--color-line-dark);
+  }
+
+  @media (min-width: 64rem) {
+    .tape {
+      display: block;
+    }
+  }
+
+  /* Every fourth graduation is a long one, the way a real tape marks its
+     centimetres against its millimetres. A second layer rather than a second
+     element, so the whole rule is two paint operations. */
+  .tape::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    inline-size: 1rem;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--color-line-dark-strong) 0 1px,
+      transparent 1px calc(var(--tape-step) * 4)
+    );
+  }
+
+  /* The brass slider. Travels the height of the page as the document scrolls. */
+  .tape__indicator {
+    position: absolute;
+    inset-inline: 0;
+    block-size: 2.25rem;
+    background-color: color-mix(in srgb, var(--pigment) 22%, transparent);
+    border-block: 1px solid var(--pigment);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .tape__indicator {
+      animation: tape-travel linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  @keyframes tape-travel {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(100vh - 2.25rem));
+    }
+  }
+
+  /* The numerals, in Persian, one per long graduation group. Set in the body
+     face: nastaliq digits at 11px would be illegible, and this is the one
+     place on the page where a number has to be read at a glance. */
+  .tape__mark {
+    position: absolute;
+    inset-inline-start: 0.5rem;
+    transform: translateY(-50%);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+    color: var(--color-chalk-2);
+    opacity: 0.55;
+  }
+
   /* The arrow that means "next". Drawn pointing along the reading direction
      and flipped by the direction axis, never hardcoded left or right. */
   .arrow-lead {
@@ -434,7 +644,7 @@
   inset-inline-start: var(--space-3);
   z-index: 100;
   transform: translateY(-200%);
-  background-color: var(--color-makhmal);
+  background-color: var(--color-shab);
   color: var(--color-chalk);
   padding: var(--space-3) var(--space-5);
   font-size: var(--text-meta);
@@ -467,6 +677,13 @@
   }
 
   .img-zoom {
+    transform: none !important;
+  }
+
+  /* The tape stops tracking. It stays on the page — it is a ruler, and a ruler
+     that is not moving is still a ruler — but nothing on screen animates. */
+  .tape__indicator {
+    animation: none !important;
     transform: none !important;
   }
 }

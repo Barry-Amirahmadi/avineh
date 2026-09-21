@@ -11,7 +11,7 @@
  * dependencies and adding `sharp` or `resvg` to draw one 1200×630 rectangle is
  * a bad trade. Node's own `zlib` is all a PNG encoder needs.
  *
- * The card is the same art direction as `generate-media.mjs` — makhmal ground,
+ * The card is the same art direction as `generate-media.mjs` — shab ground,
  * a defocused tonal mass, light falling from the top-right, which is the RTL
  * reading origin — with the brand mark from `src/app/icon.svg` over it. It
  * carries no type: rendering Persian into a generated raster needs a font
@@ -34,9 +34,9 @@ const W = 1200;
 const H = 630;
 
 /** Kept in sync with src/app/tokens.css and scripts/generate-media.mjs. */
-const MAKHMAL = [0x1c, 0x14, 0x18];
-const TONE = [0xbb, 0xa5, 0x9f];
-const CHALK = [0xe7, 0xe5, 0xe4];
+const SHAB = [0x12, 0x13, 0x1a]; /* --color-shab */
+const TONE = [0xb0, 0x8d, 0x57]; /* --color-berenj */
+const CHALK = [0xe8, 0xea, 0xe9]; /* --color-chalk */
 
 /* -------------------------------------------------------------------------- */
 /*  PNG encoding                                                              */
@@ -209,16 +209,16 @@ const markY = (v) => originY + v * scale;
 
 for (let y = 0; y < H; y++) {
   for (let x = 0; x < W; x++) {
-    px[0] = MAKHMAL[0];
-    px[1] = MAKHMAL[1];
-    px[2] = MAKHMAL[2];
+    px[0] = SHAB[0];
+    px[1] = SHAB[1];
+    px[2] = SHAB[2];
 
     // 1 — the tonal fall, top-right to bottom-left.
     const fall = clamp01((x / W) * 0.55 + (1 - y / H) * 0.45);
-    over(px, TONE, mix(0.34, 0.92, fall) * 0.55);
+    over(px, TONE, mix(0.20, 0.62, fall) * 0.55);
 
     // 2 — the defocused mass, with its highlight and its shadow.
-    over(px, TONE, glow(x, y, 250, 470, 330) * 0.5);
+    over(px, TONE, glow(x, y, 250, 470, 330) * 0.34);
     over(px, [255, 255, 255], glow(x, y, 1010, 60, 380) * 0.16);
     over(px, [0, 0, 0], glow(x, y, 120, 690, 330) * 0.24);
 

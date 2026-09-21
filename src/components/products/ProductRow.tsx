@@ -32,25 +32,52 @@ import { cn } from "@/lib/cn";
  * along: the row it was centring in was exactly as tall as the copy itself.
  * Pinning the row is what lets `self-center` mean anything.
  */
+/**
+ * Four arrangements, and they have to be four.
+ *
+ * `compact` was a byte-for-byte copy of `wide` in the template this derives
+ * from, so the "five different arrangements" the page claimed were really
+ * three, and a nine-gown scroll repeated the same picture. Each one now differs
+ * in column span, in which edge the image is held to, and in how much air the
+ * copy gets — because a catalogue whose every row is composed the same way
+ * reads as a grid no matter how good the photography is.
+ *
+ * Column positions are flow-relative: in RTL `col-start-1` is the RIGHT edge.
+ *
+ * DO NOT REMOVE `lg:row-start-1` FROM A COPY BLOCK. Grid sparse auto-placement
+ * never moves its cursor backwards, so a copy block asking for a column before
+ * the media it pairs with lands on the next row instead — silently, and only
+ * at `lg`.
+ */
 const arrangements = {
+  /** Held to the reading edge and bled off it — the image starts before the
+   *  page does. The copy sits far across, centred against it. */
   tall: {
-    media: "lg:col-start-1 lg:col-span-5",
-    copy: "lg:col-start-8 lg:col-span-5 lg:row-start-1 lg:self-center",
-    sizes: "(max-width: 1024px) 100vw, 40vw",
+    media: "lg:col-start-1 lg:col-span-6 lg:ms-[calc(var(--gutter)*-1)]",
+    copy: "lg:col-start-8 lg:col-span-4 lg:row-start-1 lg:self-center",
+    sizes: "(max-width: 1024px) 100vw, 46vw",
   },
+  /** The mirror, and wider: image on the far edge, copy baseline-aligned to the
+   *  bottom of it rather than centred, so the pair does not read as `tall`
+   *  flipped. */
   wide: {
-    media: "lg:col-start-8 lg:col-span-5",
-    copy: "lg:col-start-1 lg:col-span-5 lg:row-start-1 lg:self-center",
-    sizes: "(max-width: 1024px) 100vw, 40vw",
+    media: "lg:col-start-6 lg:col-span-7 lg:me-[calc(var(--gutter)*-1)]",
+    copy: "lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:self-end lg:pb-6",
+    sizes: "(max-width: 1024px) 100vw, 54vw",
   },
+  /** The quiet row. A small plate set in from both edges with the copy given
+   *  more width than the picture — the only arrangement where the words lead. */
   compact: {
-    media: "lg:col-start-8 lg:col-span-5",
-    copy: "lg:col-start-1 lg:col-span-5 lg:row-start-1 lg:self-center",
-    sizes: "(max-width: 1024px) 100vw, 40vw",
+    media: "lg:col-start-3 lg:col-span-3",
+    copy: "lg:col-start-7 lg:col-span-5 lg:row-start-1 lg:self-center",
+    sizes: "(max-width: 1024px) 100vw, 26vw",
   },
+  /** Full bleed, with the copy ON the photograph rather than under it. Both
+   *  blocks claim row 1 and column 1, so they occupy the same grid area and
+   *  overlap; the scrim below keeps the type legible over whatever is there. */
   feature: {
     media: "lg:col-start-1 lg:col-span-12",
-    copy: "lg:col-start-1 lg:col-span-6 lg:mt-8",
+    copy: "lg:col-start-1 lg:col-span-5 lg:row-start-1 lg:self-end lg:relative lg:z-10 lg:p-10",
     sizes: "100vw",
   },
 } as const;
@@ -78,8 +105,9 @@ export function ProductRow({ product, index }: { product: ResolvedProduct; index
     <article
       ref={ref}
       aria-labelledby={headingId}
+      data-layout={product.layout}
       className={cn(
-        "grid-editorial items-start",
+        "product-row grid-editorial items-start",
         index > 0 && "mt-[var(--section-y-tight)]",
       )}
     >

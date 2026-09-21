@@ -6,22 +6,52 @@ import { EditorialImage } from "@/components/ui/EditorialImage";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * The hero states the thesis: a small collection, made slowly.
+ * The hero is the measurement.
  *
- * Desktop composition is right-weighted. The type occupies the first five
- * columns — the right edge in RTL, where a Persian reader starts — and the
- * photograph runs off the left edge of the page, so the eye travels from type
- * into image along the reading direction rather than against it.
+ * It used to be a headline beside a photograph, which is the composition every
+ * atelier, every studio and every furniture brand opens with, and it said
+ * nothing about this one in particular. The thesis of this business is in one
+ * line of its own copy: «اندازه، نه سایز» — no gown is cut to a standard size,
+ * every pattern is cut on the client's own measurements. So the first thing on
+ * the page is a gown being measured.
+ *
+ * Three callouts sit on the silhouette — bust, waist, bodice length — each a
+ * brass point with a leader line running out to its name. They arrive in
+ * sequence after the headline, so the page reads: the claim, then the claim
+ * being performed.
+ *
+ * **No numbers on the callouts.** A measurement value here would be invented
+ * data about a gown that does not exist. What is shown is *which* measurements
+ * are taken, which is a true statement about how the atelier works.
+ *
+ * Desktop composition is right-weighted: type in the first five columns — the
+ * right edge in RTL, where a Persian reader starts — and the photograph running
+ * off the left edge, so the eye travels from type into image along the reading
+ * direction rather than against it.
  *
  * Mobile is recomposed, not compressed. The section is built from three
  * placeable blocks so the photograph can sit BETWEEN the headline and the
  * supporting copy: the reader gets the claim, then the picture, then the
- * explanation. Stacking the desktop order instead would bury the only image
- * below a screen and a half of text.
+ * explanation. Stacking the desktop order would bury the only image below a
+ * screen and a half of text.
  */
+
+/**
+ * Where each callout attaches to the silhouette, as a percentage of the frame.
+ *
+ * Geometry lives here and the words live in `sections.ts`, on purpose: the
+ * labels are copy an editor rewrites, the anchor points are composition
+ * against a specific crop. Ordered top-down to match the reading of a body.
+ */
+const ANCHORS = [
+  { top: "30%", from: "46%", reach: "22%" },
+  { top: "44%", from: "51%", reach: "31%" },
+  { top: "64%", from: "43%", reach: "17%" },
+] as const;
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-8 pb-[var(--section-y-tight)] lg:pt-14">
+    <section className="ground-dark on-dark relative overflow-hidden pt-8 pb-[var(--section-y-tight)] lg:pt-14">
       <div className="container">
         <div className="grid-editorial">
           {/* 1 — the claim */}
@@ -34,19 +64,50 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* 2 — the photograph. Bleeds off both page edges on mobile, off the
-                 left edge only on desktop where the type holds the right. */}
+          {/* 2 — the gown, measured. Bleeds off both page edges on mobile, off
+                 the left edge only on desktop where the type holds the right. */}
           <div className="order-2 col-span-4 md:col-span-8 lg:order-none lg:col-start-6 lg:col-span-7 lg:row-start-1 lg:row-span-2">
             <div className="relative mx-[calc(var(--gutter)*-1)] lg:ms-0 lg:me-[calc(var(--gutter)*-1)]">
-              {/* The 4:5 crop is the preferred shape; the frame is capped
-                  against viewport height so the call to action stays reachable,
-                  and the image crops rather than pushing the page down. */}
-              <EditorialImage
-                media={hero.image}
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                priority
-                className="max-h-[48vh] lg:max-h-[66vh]"
-              />
+              <div className="relative">
+                {/* The 4:5 crop is the preferred shape; the frame is capped
+                    against viewport height so the call to action stays
+                    reachable, and the image crops rather than pushing the page
+                    down. */}
+                <EditorialImage
+                  media={hero.image}
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  priority
+                  className="max-h-[52vh] lg:max-h-[70vh]"
+                />
+
+                {/* The callouts. A list, not decoration: these are three real
+                    statements about what the atelier does, and they read in
+                    order. Hidden below `md`, where the frame is too narrow for
+                    a leader line to reach anywhere without crossing the gown. */}
+                <ul
+                  className="pointer-events-none absolute inset-0 hidden md:block"
+                  aria-label={hero.measuresLabel}
+                >
+                  {hero.measures.map((measure, i) => (
+                    <li
+                      key={measure}
+                      className="measure"
+                      style={
+                        {
+                          top: ANCHORS[i].top,
+                          "--from": ANCHORS[i].from,
+                          "--reach": ANCHORS[i].reach,
+                          "--reveal-delay": `${520 + i * 190}ms`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <span className="measure__point" />
+                      <span className="measure__leader" />
+                      <span className="measure__label">{measure}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Inset study, straddling the bottom edge of the main frame on
                   the side nearest the type — half on the photograph, half on
@@ -81,16 +142,20 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Closing rule: brand label at the start of the line, orientation at
-            the end. Hidden on mobile, where the fold does the same job. */}
-        <div className="mt-16 hidden items-center justify-between gap-6 border-t border-[var(--color-line)] pt-4 md:flex lg:mt-32">
-          <p className="t-label">{site.brand.latin} — SKIN CARE</p>
-          <p className="t-meta flex items-center gap-2">
-            {hero.scrollHint}
-            <svg width="12" height="16" viewBox="0 0 12 16" aria-hidden="true" focusable="false">
-              <path d="M6 1v13M1 9l5 5 5-5" stroke="currentColor" strokeWidth="1.1" fill="none" />
-            </svg>
-          </p>
+        {/* Closing rule, sewn rather than ruled: brand label at the start of the
+            line, orientation at the end. Hidden on mobile, where the fold does
+            the same job. */}
+        <div className="mt-16 hidden md:block lg:mt-32">
+          <hr className="rule rule--stitch" />
+          <div className="flex items-center justify-between gap-6 pt-4">
+            <p className="t-label">{site.brand.latin} — {site.brand.latinTrade}</p>
+            <p className="t-meta flex items-center gap-2">
+              {hero.scrollHint}
+              <svg width="12" height="16" viewBox="0 0 12 16" aria-hidden="true" focusable="false">
+                <path d="M6 1v13M1 9l5 5 5-5" stroke="currentColor" strokeWidth="1.1" fill="none" />
+              </svg>
+            </p>
+          </div>
         </div>
       </div>
     </section>

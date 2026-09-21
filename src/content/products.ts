@@ -61,12 +61,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-sepidar-back.svg",
-        alt: "نمای پشت لباس سپیدار و دنبالهٔ کوتاه آن",
+        alt: "نمای پشت لباس سپیدار، بالاتنهٔ بسته و فرم باریک",
         ratio: "3/4",
       },
       {
         src: "/media/gown-sepidar-detail.svg",
-        alt: "نمای نزدیک از خط شانه و بالاتنهٔ لباس سپیدار",
+        alt: "نمای نزدیک از مهره‌دوزی دست روی بالاتنهٔ سپیدار",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-sepidar-hem.svg",
+        alt: "نمای نزدیک از دامن سادهٔ سپیدار تا لبهٔ پایین",
         ratio: "3/4",
       },
     ],
@@ -109,7 +114,7 @@ export const products: Product[] = [
       },
       {
         src: "/media/gown-mahtab-hem.svg",
-        alt: "نمای نزدیک از لبهٔ دامن و پایان دنبالهٔ لباس مهتاب",
+        alt: "نمای نزدیک از دامن آ-لاین و پایان دنبالهٔ مهتاب",
         ratio: "3/4",
       },
     ],
@@ -145,13 +150,18 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-niloofar-back.svg",
-        alt: "نمای پشت لباس نیلوفر و بستن بالاتنه",
-        ratio: "4/5",
+        alt: "نمای پشت لباس نیلوفر، خط پشت باز",
+        ratio: "3/4",
       },
       {
         src: "/media/gown-niloofar-detail.svg",
-        alt: "نمای نزدیک از مرز بالاتنه و دامن لباس نیلوفر",
-        ratio: "4/5",
+        alt: "نمای نزدیک از کار دست روی بالاتنهٔ نیلوفر",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-niloofar-hem.svg",
+        alt: "نمای نزدیک از دامن نیلوفر و لبهٔ دوخته‌شدهٔ آن",
+        ratio: "3/4",
       },
     ],
     layout: "feature",
@@ -182,12 +192,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-shabnam-back.svg",
-        alt: "نمای پشت لباس شبنم",
+        alt: "نمای پشت لباس شبنم، فرم باریک و بدون دنباله",
         ratio: "3/4",
       },
       {
         src: "/media/gown-shabnam-detail.svg",
-        alt: "نمای نزدیک از خط یقه و حلقهٔ آستین لباس شبنم",
+        alt: "نمای نزدیک از یقه و بالاتنهٔ شبنم",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-shabnam-hem.svg",
+        alt: "نمای نزدیک از دامن راست شبنم تا لبهٔ پایین",
         ratio: "3/4",
       },
     ],
@@ -219,12 +234,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-nastaran-back.svg",
-        alt: "نمای پشت لباس نسترن",
+        alt: "نمای پشت لباس نسترن، بالاتنهٔ گرم‌رنگ",
         ratio: "3/4",
       },
       {
         src: "/media/gown-nastaran-detail.svg",
-        alt: "نمای نزدیک از آستین باریک لباس نسترن",
+        alt: "نمای نزدیک از مهره‌دوزی بالاتنهٔ نسترن",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-nastaran-hem.svg",
+        alt: "نمای نزدیک از دامن نسترن و چین‌های آن",
         ratio: "3/4",
       },
     ],
@@ -256,17 +276,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-termeh-back.svg",
-        alt: "نمای پشت لباس ترمه",
+        alt: "نمای پشت لباس ترمه، دنبالهٔ کوتاه",
         ratio: "3/4",
       },
       {
         src: "/media/gown-termeh-detail.svg",
-        alt: "نمای نزدیک از دوخت دست روی بالاتنهٔ لباس ترمه",
+        alt: "نمای نزدیک از کار دست ترمه روی بالاتنه",
         ratio: "3/4",
       },
       {
         src: "/media/gown-termeh-hem.svg",
-        alt: "نمای نزدیک از دامن سادهٔ لباس ترمه",
+        alt: "نمای نزدیک از دامن ترمه و لبهٔ دنباله",
         ratio: "3/4",
       },
     ],
@@ -298,12 +318,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-shabaneh-back.svg",
-        alt: "نمای پشت باز لباس شبانه",
+        alt: "نمای پشت لباس شبانه، مخمل تیره و خط ساده",
         ratio: "3/4",
       },
       {
         src: "/media/gown-shabaneh-detail.svg",
-        alt: "نمای نزدیک از خط پشت لباس شبانه",
+        alt: "نمای نزدیک از بالاتنهٔ مخمل شبانه",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-shabaneh-hem.svg",
+        alt: "نمای نزدیک از دامن باریک شبانه تا لبهٔ پایین",
         ratio: "3/4",
       },
     ],
@@ -335,12 +360,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-aazin-back.svg",
-        alt: "نمای پشت لباس آذین و بندهای پهن آن",
+        alt: "نمای پشت لباس آذین، دامن پرچین",
         ratio: "3/4",
       },
       {
         src: "/media/gown-aazin-detail.svg",
-        alt: "نمای نزدیک از مهره‌دوزی دست روی لباس آذین",
+        alt: "نمای نزدیک از مهره‌دوزی بالاتنهٔ آذین",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-aazin-hem.svg",
+        alt: "نمای نزدیک از چین‌های دامن آذین",
         ratio: "3/4",
       },
     ],
@@ -372,12 +402,17 @@ export const products: Product[] = [
     views: [
       {
         src: "/media/gown-sayeh-back.svg",
-        alt: "نمای پشت لباس سایه",
+        alt: "نمای پشت لباس سایه، دنبالهٔ کوتاه",
         ratio: "3/4",
       },
       {
         src: "/media/gown-sayeh-detail.svg",
-        alt: "نمای نزدیک از شانهٔ لباس سایه و درپه‌های آزاد پارچه",
+        alt: "نمای نزدیک از بالاتنهٔ سادهٔ سایه",
+        ratio: "3/4",
+      },
+      {
+        src: "/media/gown-sayeh-hem.svg",
+        alt: "نمای نزدیک از دامن سایه و پایان دنباله",
         ratio: "3/4",
       },
     ],

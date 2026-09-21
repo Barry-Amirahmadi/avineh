@@ -36,7 +36,7 @@ export default function GalleryPage() {
         />
       </Section>
 
-      <section aria-label={galleryPage.eyebrow} className="ground-light-deep">
+      <section id="plates" aria-label={galleryPage.eyebrow} className="ground-dark on-dark">
         <div className="container pb-[var(--section-y)] pt-[var(--section-y-tight)]">
           <GalleryPlates items={sortedGallery} />
         </div>

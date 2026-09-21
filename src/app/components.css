@@ -29,11 +29,11 @@
 }
 
 .btn--primary {
-  background-color: var(--color-makhmal);
+  background-color: var(--color-shab);
   color: var(--color-chalk);
 }
 .btn--primary:hover {
-  background-color: color-mix(in srgb, var(--color-makhmal) 84%, var(--color-atlas));
+  background-color: color-mix(in srgb, var(--color-shab) 84%, var(--color-berenj-mid));
 }
 
 .btn--secondary {
@@ -46,11 +46,11 @@
 }
 
 .on-dark .btn--primary {
-  background-color: var(--color-atlas-bright);
-  color: var(--color-makhmal);
+  background-color: var(--color-berenj);
+  color: var(--color-shab);
 }
 .on-dark .btn--primary:hover {
-  background-color: color-mix(in srgb, var(--color-atlas-bright) 82%, #ffffff);
+  background-color: color-mix(in srgb, var(--color-berenj) 82%, #ffffff);
 }
 .on-dark .btn--secondary {
   border-color: var(--color-line-dark-strong);
@@ -82,13 +82,13 @@
   transition: border-color var(--dur) var(--ease-out);
 }
 .link-lead:hover .link-lead__text {
-  border-color: var(--color-atlas-deep);
+  border-color: var(--color-berenj-deep);
 }
 .on-dark .link-lead__text {
   border-bottom-color: var(--color-line-dark-strong);
 }
 .on-dark .link-lead:hover .link-lead__text {
-  border-bottom-color: var(--color-atlas-bright);
+  border-bottom-color: var(--color-berenj);
 }
 
 /* ---- Name link — a heading that navigates ------------------------------- */
@@ -143,7 +143,7 @@
   gap: var(--space-2);
   min-block-size: 2.75rem;
   font-size: var(--text-sm);
-  color: var(--color-ink-2);
+  color: var(--color-chalk-2);
   transition: color var(--dur-fast) var(--ease-out);
 }
 .collection-index__link:hover {
@@ -183,7 +183,7 @@
   border-block-start-color: var(--color-line-dark);
 }
 .group-media:hover .collection-item__meta {
-  border-block-start-color: var(--color-atlas-bright);
+  border-block-start-color: var(--color-berenj);
 }
 
 /* ---- Section header rule ------------------------------------------------ */
@@ -211,14 +211,17 @@
   content: "";
   inline-size: 2.25rem;
   block-size: 1px;
-  background-color: var(--color-atlas);
+  background-color: var(--color-berenj-mid);
   flex: none;
 }
 .on-dark .eyebrow {
   color: var(--color-chalk-2);
 }
 .on-dark .eyebrow::before {
-  background-color: var(--color-atlas-bright);
+  /* Follows the collection band. Outside a band `--pigment` resolves to brass
+     from :root, so this is the same brass tick it always was — the pigment
+     only ever changes it where a band has actually claimed one. */
+  background-color: var(--pigment);
 }
 
 /* ---- Tone swatch — the product's own shade, shown literally -------------- */
@@ -237,7 +240,7 @@
   position: sticky;
   inset-block-start: 0;
   z-index: 50;
-  background-color: color-mix(in srgb, var(--color-harir) 82%, transparent);
+  background-color: color-mix(in srgb, var(--color-shab) 82%, transparent);
   backdrop-filter: blur(14px);
   border-block-end: 1px solid transparent;
   transition:
@@ -245,8 +248,8 @@
     background-color var(--dur) var(--ease-out);
 }
 .site-header[data-scrolled="true"] {
-  border-block-end-color: var(--color-line);
-  background-color: color-mix(in srgb, var(--color-harir) 94%, transparent);
+  border-block-end-color: var(--color-line-dark);
+  background-color: color-mix(in srgb, var(--color-shab) 94%, transparent);
 }
 
 .nav-link {
@@ -256,7 +259,7 @@
   min-height: 2.75rem;
   padding-inline: var(--space-3);
   font-size: var(--text-sm);
-  color: var(--color-ink-2);
+  color: var(--color-chalk-2);
   transition: color var(--dur-fast) var(--ease-out);
 }
 .nav-link::after {
@@ -265,14 +268,14 @@
   inset-block-end: 0.55rem;
   inset-inline: var(--space-3);
   block-size: 1px;
-  background-color: var(--color-atlas-deep);
+  background-color: var(--color-berenj);
   scale: 0 1;
   transform-origin: var(--nav-origin, right);
   transition: scale var(--dur) var(--ease-out);
 }
 .nav-link:hover,
 .nav-link[aria-current] {
-  color: var(--color-ink);
+  color: var(--color-chalk);
 }
 .nav-link:hover::after,
 .nav-link[aria-current]::after {
@@ -287,7 +290,7 @@
   z-index: 60;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-makhmal);
+  background-color: var(--color-shab);
   color: var(--color-chalk);
   transform: translate3d(calc(var(--flow-start) * 100%), 0, 0);
   visibility: hidden;
@@ -365,7 +368,7 @@
   border-block-start-color: var(--color-line-dark);
 }
 .gallery-tile:hover .gallery-tile__meta {
-  border-block-start-color: var(--color-atlas);
+  border-block-start-color: var(--color-berenj-mid);
 }
 
 /* ---- Lightbox ----------------------------------------------------------- */
@@ -459,5 +462,141 @@
   transition: border-color var(--dur) var(--ease-out);
 }
 .view-strip__button:hover {
-  border-color: var(--color-atlas-bright);
+  border-color: var(--color-berenj);
+}
+
+/* ---- Measurement callouts — the hero's thesis ----------------------------
+   A brass point on the silhouette, a leader line out toward the frame's far
+   edge, and the name of the measurement. Three of them, arriving after the
+   headline so the page reads claim-then-demonstration.
+
+   Anchored from the POINT, not from a frame edge: `--from` places the point
+   over the gown and the assembly grows away from it, so moving a callout is
+   one number and the leader length stays independent of it. Anchoring at the
+   far edge instead makes the point's position a function of the label's text
+   length, which changes when the copy is edited.
+
+   Everything is flow-relative. `inset-inline-start` puts the point on the
+   right in RTL and the assembly runs leftward into the dark margin of the
+   photograph, away from the type column. In an LTR locale it all mirrors with
+   no rule changes.
+
+   `--reach` differs per callout so the three labels do not terminate on one
+   vertical line — a column of three labels reads as a list bolted onto the
+   photograph rather than as annotations of it. */
+
+.measure {
+  position: absolute;
+  inset-inline-start: var(--from, 45%);
+  display: flex;
+  align-items: center;
+}
+
+.measure__point {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  inline-size: 7px;
+  block-size: 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-berenj);
+  /* A ring, so the point holds against both a pale gown and a dark ground.
+     What is behind it is not a known colour. */
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-shab) 55%, transparent);
+}
+
+.measure__leader {
+  flex: 0 0 auto;
+  inline-size: var(--reach, 34%);
+  block-size: 1px;
+  background-color: var(--color-berenj);
+  opacity: 0.85;
+}
+
+.measure__label {
+  flex: 0 0 auto;
+  padding-inline-start: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--color-chalk);
+  /* The label can land on the pale part of a gown. A tint of the ground
+     behind it keeps it legible without drawing a box around it. */
+  text-shadow: 0 1px 6px var(--color-shab-deep);
+}
+
+/* Arrival: the point lands, then the leader draws out to the label.
+   A keyframe animation on load rather than a scroll reveal — the hero is above
+   the fold on every viewport, so there is no scroll event to wait for, and
+   hanging this off `[data-in]` would make it depend on an observer that has
+   already fired by the time it mounts. Held on [data-js] like every other
+   reveal, so a blocked bundle leaves the callouts fully drawn. */
+[data-js="on"] .measure {
+  animation: measure-in var(--dur) var(--ease-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+[data-js="on"] .measure__leader {
+  /* Grows out of the point, which sits at the inline-start end of the
+     assembly: 100% in RTL, 0% in LTR, off the one direction axis. */
+  transform-origin: calc(50% + var(--flow-start) * 50%) center;
+  animation: measure-draw var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+}
+
+@keyframes measure-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes measure-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- The feature row ----------------------------------------------------
+   The only arrangement that sets its copy ON the photograph. That needs a
+   scrim, and the scrim has to be a gradient rather than a flat tint: a flat
+   overlay strong enough to carry text at the bottom corner dulls the whole
+   image, which on the one full-bleed picture of the page is the picture.
+
+   Applied at `lg` only — below it the copy sits under the image as usual and a
+   scrim would darken an image with nothing on it. */
+
+@media (min-width: 64rem) {
+  .product-row[data-layout="feature"] .img-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+      to top left,
+      color-mix(in srgb, var(--color-shab-deep) 82%, transparent),
+      color-mix(in srgb, var(--color-shab-deep) 30%, transparent) 42%,
+      transparent 68%
+    );
+  }
+}
+
+/* ---- Band seam ----------------------------------------------------------
+   Where one collection ends and the next begins, sewn. The stitch sits on the
+   boundary rather than inside either band, so it belongs to neither and reads
+   as the join between them — which is what a seam is. */
+
+.band + .band {
+  border-block-start: 2px solid transparent;
+  border-image: repeating-linear-gradient(
+      to left,
+      var(--pigment) 0 var(--stitch-pitch),
+      transparent var(--stitch-pitch) calc(var(--stitch-pitch) * 1.72)
+    )
+    2;
 }

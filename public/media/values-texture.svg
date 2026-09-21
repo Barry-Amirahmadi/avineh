@@ -1,35 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1400" viewBox="0 0 1050 1400" role="img">
   <defs>
-    <radialGradient id="light" cx="78%" cy="18%" r="88%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
-      <stop offset="52%" stop-color="#FFFFFF" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
-    </radialGradient>
-    <linearGradient id="fall" x1="1" y1="0" x2="0.1" y2="1">
-      <stop offset="0%" stop-color="#9A7870" stop-opacity="0.92"/>
-      <stop offset="100%" stop-color="#9A7870" stop-opacity="0.34"/>
+    <linearGradient id="sheen" x1="0.88" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="48%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.26"/>
     </linearGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="136.5"/>
+    <filter id="soften" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="12.60"/>
     </filter>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="13" result="n"/>
       <feColorMatrix type="saturate" values="0" in="n" result="g"/>
-      <feComponentTransfer in="g" result="gt">
-        <feFuncA type="linear" slope="0.5"/>
-      </feComponentTransfer>
+      <feComponentTransfer in="g" result="gt"><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
       <feBlend in="SourceGraphic" in2="gt" mode="overlay"/>
     </filter>
   </defs>
-
   <g filter="url(#grain)">
-    <rect width="1050" height="1400" fill="#E6E2E1"/>
-    <rect width="1050" height="1400" fill="url(#fall)" opacity="0.55"/>
-    <g filter="url(#soft)">
-      <ellipse cx="504" cy="756" rx="305" ry="390" fill="#9A7870" opacity="0.85"/>
-      <ellipse cx="632" cy="577" rx="152" ry="133" fill="#FFFFFF" opacity="0.26"/>
-      <ellipse cx="315" cy="951" rx="213" ry="156" fill="#000000" opacity="0.2"/>
+    <rect width="1050" height="1400" fill="#0B0C11"/>
+    <g filter="url(#soften)">
+      <path d="M -105.0 149.9 C 315.0 8.2 735.0 291.5 1155.0 93.2 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.42"/>
+      <path d="M -105.0 311.4 C 315.0 221.4 735.0 401.5 1155.0 275.4 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.30"/>
+      <path d="M -105.0 535.3 C 315.0 382.0 735.0 688.6 1155.0 474.0 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.24"/>
+      <path d="M -105.0 660.0 C 315.0 488.4 735.0 831.6 1155.0 591.4 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.39"/>
+      <path d="M -105.0 826.9 C 315.0 710.3 735.0 943.5 1155.0 780.3 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.49"/>
+      <path d="M -105.0 1013.2 C 315.0 841.1 735.0 1185.2 1155.0 944.4 L 1155.0 1540.0 L -105.0 1540.0 Z" fill="#B08D57" opacity="0.35"/>
     </g>
-    <rect width="1050" height="1400" fill="url(#light)"/>
+    <rect width="1050" height="1400" fill="url(#sheen)"/>
   </g>
 </svg>

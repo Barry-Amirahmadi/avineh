@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Mirza, Vazirmatn } from "next/font/google";
+import { Gulzar, Vazirmatn } from "next/font/google";
 import { site } from "@/content/site";
 import { ui } from "@/content/ui";
 import { organizationSchema } from "@/content/schema";
@@ -7,6 +7,7 @@ import { siteRoot } from "@/lib/seo";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TapeRule } from "@/components/signature/TapeRule";
 import "./globals.css";
 
 /**
@@ -15,17 +16,16 @@ import "./globals.css";
  * Iranian users: no third-party font request to be slow or blocked, and no
  * layout shift while a webfont negotiates.
  *
- * Mirza        — Nastaliq-inflected Persian Naskh, long descenders. Display only.
+ * Gulzar       — NASTALIQ. The wordmark and the display headings, nothing else.
  * Vazirmatn    — neutral Persian sans. Everything else.
  *
  * **Both subsets on both faces. Do not "optimise" the display face down to
- * `arabic`** —
- * that was tried in Phase 04 and measured, and it makes the page slower.
+ * `arabic`** — that was tried and measured, and it makes the page slower.
  *
  * The reasoning that suggests it is sound and wrong: nothing on this site sets
  * Latin in the display face, because the Latin half of the wordmark and every
  * micro-label are `.t-label`, which is `--font-body`. Walking every route for
- * an element computing to Mirza with Latin text in it finds none.
+ * an element computing to the display face with Latin text in it finds none.
  *
  * But Google splits these faces by unicode range, and the `arabic` subset covers
  * `U+0600-06FF` and friends — **it does not contain `U+0020`**. The space
@@ -36,12 +36,13 @@ import "./globals.css";
  * discovered after layout — the same bytes, arriving in time to cause a visible
  * swap on the largest type on the page.
  */
-const mirza = Mirza({
+const gulzar = Gulzar({
   subsets: ["arabic", "latin"],
-  /* Mirza is not a variable font, so next/font requires the weights named.
-     400 is the display voice; 500 is the one step up the wordmark uses. */
-  weight: ["400", "500"],
-  variable: "--font-mirza",
+  /* Gulzar ships one weight and there is no bold. Every piece of display
+     hierarchy on this site therefore has to come from size, never from weight —
+     asking for 700 here would silently synthesise a smeared faux-bold. */
+  weight: ["400"],
+  variable: "--font-gulzar",
   display: "swap",
 });
 
@@ -80,8 +81,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f2f1",
-  colorScheme: "light",
+  /* Must track `--color-shab`. The dark ground is the page's own colour now,
+     and a themeColor left on the old cream paints a bright band above the
+     status bar on a phone — the one piece of the design the CSS cannot reach. */
+  themeColor: "#12131a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -89,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fa"
       dir="rtl"
-      className={`${vazirmatn.variable} ${mirza.variable}`}
+      className={`${vazirmatn.variable} ${gulzar.variable}`}
       /* The inline script below stamps data-js before React hydrates; that is
          the point of it, so the resulting attribute difference is expected. */
       suppressHydrationWarning
@@ -107,6 +111,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">
           {ui.skipToContent}
         </a>
+
+        <TapeRule />
 
         <Header />
         <main id="main">{children}</main>

@@ -11,17 +11,16 @@ import { CtaSection } from "@/components/sections/CtaSection";
 /**
  * Collection page.
  *
- * The homepage showcase and this page render the same five products, and the
+ * The homepage showcase and this page render the same nine gowns, and the
  * difference between them is the point: the showcase is the *narrative* cut —
- * five full spreads, read in sequence, arguing that the products make a routine
- * — while this is the *register*, where the collection can be surveyed at once
- * and entered at any point. Same content, same rhythm vocabulary, different
- * density and a different job.
+ * full spreads, read in sequence — while this is the *register*, where the
+ * collection can be surveyed at once and entered at any point. Same content,
+ * same rhythm vocabulary, different density and a different job.
  *
- * Order is the editor's order, not re-sorted into category blocks. Sequencing
- * is an editorial decision in this project (§28, §48.2), and with five
- * single-product categories, grouping would produce five headed groups of one —
- * the repeated-row template the whole design exists to avoid.
+ * Order is the editor's order, not re-sorted: the nine are already written in
+ * collection order, and `collectRuns` bands them where they fall rather than
+ * regrouping them. See `CollectionGrid` for why this page stopped being a flat
+ * list.
  */
 export const metadata = pageMetadata({
   title: collection.seo.title,

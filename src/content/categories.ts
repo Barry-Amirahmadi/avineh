@@ -61,3 +61,61 @@ export function collectCategories(list: readonly ResolvedProduct[]): CategoryEnt
 
   return [...entries.values()];
 }
+
+/**
+ * The three collection pigments, in the order a band may claim them.
+ *
+ * `null` is a real member: a fourth category is legal data, and it gets no
+ * pigment rather than wrapping back round to the first. Three chromas exist
+ * because the catalogue has three collections; a fourth reusing pearl would
+ * quietly tell a reader that two unrelated collections are the same thing.
+ */
+export type Pigment = "morvarid" | "sabz" | "zereshk";
+const PIGMENTS: readonly Pigment[] = ["morvarid", "sabz", "zereshk"];
+
+export interface CategoryRun {
+  category: string;
+  /** null once the catalogue grows past the three pigments that exist. */
+  pigment: Pigment | null;
+  items: ResolvedProduct[];
+}
+
+/**
+ * The catalogue cut into contiguous runs of one category.
+ *
+ * Contiguous, not grouped: product order is an editorial decision in this
+ * project, and re-sorting the list into category blocks here would silently
+ * override it — and would move a product's arrangement out from under it,
+ * since arrangement is assigned by position when `layout` is unset. If an
+ * editor interleaves categories, they get interleaved bands, which is a
+ * visible consequence of a visible decision rather than a hidden correction.
+ *
+ * The pigment is assigned by the order a category is FIRST introduced, so a
+ * category that appears in two separate runs keeps one colour throughout.
+ * Nothing here matches on the Persian category text: the taxonomy stays
+ * derived from the data, exactly as `collectCategories` above leaves it.
+ */
+export function collectRuns(list: readonly ResolvedProduct[]): CategoryRun[] {
+  const assigned = new Map<string, Pigment | null>();
+  const runs: CategoryRun[] = [];
+
+  for (const product of list) {
+    if (!assigned.has(product.category)) {
+      assigned.set(product.category, PIGMENTS[assigned.size] ?? null);
+    }
+
+    const current = runs[runs.length - 1];
+    if (current && current.category === product.category) {
+      current.items.push(product);
+      continue;
+    }
+
+    runs.push({
+      category: product.category,
+      pigment: assigned.get(product.category) ?? null,
+      items: [product],
+    });
+  }
+
+  return runs;
+}

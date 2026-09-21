@@ -348,7 +348,11 @@ test("the gallery page composes every plate and opens the right one", async ({ p
 
   // Every image must survive the banding. A composition that drops the last
   // item when the count is odd loses it silently.
-  const tiles = page.locator(".ground-light-deep .gallery-tile");
+  // Scoped by the section's identity, not by its ground class. This read
+  // `.ground-light-deep .gallery-tile` and broke the moment the gallery moved
+  // onto a dark ground — a styling decision silently failing a test about
+  // whether any plate is dropped, which is not what the test is for.
+  const tiles = page.locator("section#plates .gallery-tile");
   const count = await tiles.count();
   expect(count, "every plate is composed").toBe(8);
 

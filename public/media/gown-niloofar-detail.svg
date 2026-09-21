@@ -1,35 +1,213 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1375" viewBox="0 0 1100 1375" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="504.0" height="672.0" viewBox="273.0 196.0 504.0 672.0" role="img">
   <defs>
-    <radialGradient id="light" cx="78%" cy="18%" r="88%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
-      <stop offset="52%" stop-color="#FFFFFF" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
-    </radialGradient>
-    <linearGradient id="fall" x1="1" y1="0" x2="0.1" y2="1">
-      <stop offset="0%" stop-color="#BFC1BC" stop-opacity="0.92"/>
-      <stop offset="100%" stop-color="#BFC1BC" stop-opacity="0.34"/>
+    <linearGradient id="cloth" x1="0.82" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#BFC1BC" stop-opacity="1"/>
+      <stop offset="46%" stop-color="#BFC1BC" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#BFC1BC" stop-opacity="0.52"/>
     </linearGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="143.0"/>
+    <linearGradient id="sheen" x1="0.9" y1="0.05" x2="0.35" y2="0.95">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="62%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </linearGradient>
+    <!-- The same satin, mapped to the CANVAS instead of to each shape's own
+         box. The body wears this gradient stretched across the whole frame, so
+         a strap wearing it stretched across its own few pixels gets the entire
+         light-to-dark run compressed into itself, and comes out darker than the
+         cloth it is sewn to — آذین's wide pair read as two epaulettes. Light
+         falls on a garment from one direction, not from each piece's corner.
+         NOTE: no backticks in here. This comment is inside a template literal. -->
+    <linearGradient id="sheen-user" gradientUnits="userSpaceOnUse" x1="945.0" y1="70.0" x2="367.5" y2="1330.0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.34"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="62%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="key" cx="80%" cy="10%" r="92%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.13"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </radialGradient>
+    <radialGradient id="floor" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="body"><path d="M 732.9 175.0 Q 525.0 244.3 317.1 175.0 C 333.7 364.0 372.2 434.0 379.5 490.0 C 343.1 731.1 100.9 1075.5 53.8 1351.0 Q 525.0 1400.0 996.2 1351.0 C 949.1 1075.5 706.9 731.1 670.5 490.0 C 677.8 434.0 716.3 364.0 732.9 175.0 Z"/></clipPath>
+    <filter id="soften" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.68"/>
     </filter>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="122" result="n"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="123" result="n"/>
       <feColorMatrix type="saturate" values="0" in="n" result="g"/>
       <feComponentTransfer in="g" result="gt">
-        <feFuncA type="linear" slope="0.5"/>
+        <feFuncA type="linear" slope="0.18"/>
       </feComponentTransfer>
       <feBlend in="SourceGraphic" in2="gt" mode="overlay"/>
     </filter>
   </defs>
 
   <g filter="url(#grain)">
-    <rect width="1100" height="1375" fill="#1C1418"/>
-    <rect width="1100" height="1375" fill="url(#fall)" opacity="0.55"/>
-    <g filter="url(#soft)">
-      <ellipse cx="572" cy="605" rx="341" ry="436" fill="#BFC1BC" opacity="0.85"/>
-      <ellipse cx="715" cy="404" rx="171" ry="148" fill="#FFFFFF" opacity="0.26"/>
-      <ellipse cx="361" cy="823" rx="239" ry="175" fill="#000000" opacity="0.2"/>
+    <rect x="0" y="0" width="1050" height="1400" fill="#141E28"/>
+
+    <!-- The cloth the gown is standing on. -->
+    <ellipse cx="525.0" cy="1351.0" rx="582.1" ry="44.8" fill="url(#floor)"/>
+
+    <g filter="url(#soften)">
+      
+      
+      <path d="M 732.9 175.0 Q 525.0 244.3 317.1 175.0 C 333.7 364.0 372.2 434.0 379.5 490.0 C 343.1 731.1 100.9 1075.5 53.8 1351.0 Q 525.0 1400.0 996.2 1351.0 C 949.1 1075.5 706.9 731.1 670.5 490.0 C 677.8 434.0 716.3 364.0 732.9 175.0 Z" fill="url(#cloth)"/>
+
+      <g clip-path="url(#body)">
+        <path d="M 422.7 504.0 C 398.5 782.7 135.1 971.4 110.9 1264.1" fill="none" stroke="url(#fold)" stroke-width="5.6" stroke-linecap="round"/>
+      <path d="M 456.8 504.0 C 449.6 782.7 256.4 952.7 249.1 1245.4" fill="none" stroke="url(#fold)" stroke-width="6.3" stroke-linecap="round"/>
+      <path d="M 486.8 504.0 C 492.4 782.7 365.0 945.7 370.6 1238.5" fill="none" stroke="url(#fold)" stroke-width="10.3" stroke-linecap="round"/>
+      <path d="M 528.1 504.0 C 506.6 782.7 559.1 908.3 537.6 1201.0" fill="none" stroke="url(#fold)" stroke-width="9.5" stroke-linecap="round"/>
+      <path d="M 558.8 504.0 C 538.3 782.7 682.3 1002.0 661.8 1294.7" fill="none" stroke="url(#fold)" stroke-width="8.7" stroke-linecap="round"/>
+      <path d="M 591.9 504.0 C 609.7 782.7 777.8 931.0 795.6 1223.8" fill="none" stroke="url(#fold)" stroke-width="4.6" stroke-linecap="round"/>
+      <path d="M 624.2 504.0 C 634.8 782.7 916.1 950.5 926.7 1243.2" fill="none" stroke="url(#fold)" stroke-width="10.3" stroke-linecap="round"/>
+        <circle cx="378.9" cy="221.7" r="3.37" fill="#FFFFFF" opacity="0.22"/>
+      <circle cx="642.2" cy="449.3" r="4.05" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="471.4" cy="480.9" r="3.01" fill="#FFFFFF" opacity="0.41"/>
+      <circle cx="528.0" cy="295.7" r="2.84" fill="#FFFFFF" opacity="0.29"/>
+      <circle cx="389.9" cy="308.0" r="4.20" fill="#FFFFFF" opacity="0.46"/>
+      <circle cx="419.5" cy="470.4" r="3.85" fill="#FFFFFF" opacity="0.55"/>
+      <circle cx="554.9" cy="233.0" r="3.17" fill="#FFFFFF" opacity="0.25"/>
+      <circle cx="662.4" cy="241.7" r="3.37" fill="#FFFFFF" opacity="0.52"/>
+      <circle cx="543.2" cy="416.5" r="1.94" fill="#FFFFFF" opacity="0.41"/>
+      <circle cx="446.8" cy="316.6" r="3.50" fill="#FFFFFF" opacity="0.18"/>
+      <circle cx="568.0" cy="306.8" r="3.78" fill="#FFFFFF" opacity="0.27"/>
+      <circle cx="425.0" cy="391.4" r="1.90" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="519.1" cy="253.4" r="4.05" fill="#FFFFFF" opacity="0.48"/>
+      <circle cx="445.8" cy="378.3" r="4.10" fill="#FFFFFF" opacity="0.49"/>
+      <circle cx="498.8" cy="482.0" r="3.66" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="587.1" cy="430.9" r="4.09" fill="#FFFFFF" opacity="0.31"/>
+      <circle cx="518.2" cy="304.5" r="4.33" fill="#FFFFFF" opacity="0.38"/>
+      <circle cx="470.9" cy="341.3" r="3.80" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="495.8" cy="430.2" r="1.98" fill="#FFFFFF" opacity="0.50"/>
+      <circle cx="426.4" cy="319.0" r="3.53" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="556.3" cy="346.2" r="2.77" fill="#FFFFFF" opacity="0.25"/>
+      <circle cx="677.5" cy="280.4" r="4.12" fill="#FFFFFF" opacity="0.49"/>
+      <circle cx="467.6" cy="234.4" r="1.84" fill="#FFFFFF" opacity="0.56"/>
+      <circle cx="453.4" cy="233.3" r="1.72" fill="#FFFFFF" opacity="0.21"/>
+      <circle cx="639.5" cy="252.7" r="3.76" fill="#FFFFFF" opacity="0.38"/>
+      <circle cx="488.6" cy="319.2" r="2.65" fill="#FFFFFF" opacity="0.48"/>
+      <circle cx="558.8" cy="335.8" r="2.97" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="659.7" cy="229.6" r="3.46" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="588.6" cy="229.3" r="3.24" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="647.6" cy="288.8" r="2.05" fill="#FFFFFF" opacity="0.21"/>
+      <circle cx="654.3" cy="331.5" r="2.52" fill="#FFFFFF" opacity="0.27"/>
+      <circle cx="503.2" cy="475.0" r="4.04" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="562.3" cy="471.4" r="3.22" fill="#FFFFFF" opacity="0.48"/>
+      <circle cx="610.3" cy="248.2" r="2.76" fill="#FFFFFF" opacity="0.38"/>
+      <circle cx="614.9" cy="355.9" r="4.17" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="457.1" cy="333.0" r="3.77" fill="#FFFFFF" opacity="0.47"/>
+      <circle cx="649.4" cy="249.6" r="1.71" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="548.8" cy="430.3" r="3.80" fill="#FFFFFF" opacity="0.45"/>
+      <circle cx="439.9" cy="453.0" r="2.53" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="561.3" cy="318.6" r="3.34" fill="#FFFFFF" opacity="0.44"/>
+      <circle cx="580.5" cy="439.5" r="1.79" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="655.1" cy="327.5" r="3.66" fill="#FFFFFF" opacity="0.22"/>
+      <circle cx="644.8" cy="235.3" r="3.18" fill="#FFFFFF" opacity="0.52"/>
+      <circle cx="623.6" cy="322.8" r="1.98" fill="#FFFFFF" opacity="0.46"/>
+      <circle cx="441.1" cy="310.0" r="4.23" fill="#FFFFFF" opacity="0.30"/>
+      <circle cx="630.2" cy="359.4" r="3.86" fill="#FFFFFF" opacity="0.31"/>
+      <circle cx="468.9" cy="265.4" r="4.37" fill="#FFFFFF" opacity="0.48"/>
+      <circle cx="407.3" cy="419.6" r="3.73" fill="#FFFFFF" opacity="0.25"/>
+      <circle cx="607.4" cy="340.3" r="2.90" fill="#FFFFFF" opacity="0.20"/>
+      <circle cx="530.3" cy="384.4" r="4.38" fill="#FFFFFF" opacity="0.54"/>
+      <circle cx="379.2" cy="279.5" r="3.31" fill="#FFFFFF" opacity="0.56"/>
+      <circle cx="623.3" cy="238.2" r="1.95" fill="#FFFFFF" opacity="0.54"/>
+      <circle cx="561.0" cy="443.5" r="2.02" fill="#FFFFFF" opacity="0.39"/>
+      <circle cx="578.5" cy="219.6" r="1.72" fill="#FFFFFF" opacity="0.39"/>
+      <circle cx="412.2" cy="282.5" r="2.56" fill="#FFFFFF" opacity="0.46"/>
+      <circle cx="522.0" cy="344.2" r="2.01" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="519.3" cy="487.1" r="3.34" fill="#FFFFFF" opacity="0.57"/>
+      <circle cx="463.4" cy="448.0" r="3.49" fill="#FFFFFF" opacity="0.20"/>
+      <circle cx="691.4" cy="206.4" r="2.60" fill="#FFFFFF" opacity="0.57"/>
+      <circle cx="407.4" cy="463.7" r="3.00" fill="#FFFFFF" opacity="0.57"/>
+      <circle cx="675.5" cy="239.0" r="4.27" fill="#FFFFFF" opacity="0.34"/>
+      <circle cx="392.4" cy="356.0" r="1.87" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="580.8" cy="430.8" r="2.77" fill="#FFFFFF" opacity="0.44"/>
+      <circle cx="478.3" cy="290.6" r="4.09" fill="#FFFFFF" opacity="0.37"/>
+      <circle cx="479.0" cy="462.1" r="4.21" fill="#FFFFFF" opacity="0.51"/>
+      <circle cx="412.2" cy="462.1" r="1.83" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="611.1" cy="294.4" r="2.04" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="371.5" cy="293.9" r="2.61" fill="#FFFFFF" opacity="0.50"/>
+      <circle cx="647.3" cy="276.7" r="2.64" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="453.4" cy="454.7" r="2.84" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="538.9" cy="336.4" r="2.67" fill="#FFFFFF" opacity="0.38"/>
+      <circle cx="589.5" cy="228.6" r="3.11" fill="#FFFFFF" opacity="0.42"/>
+      <circle cx="590.5" cy="264.6" r="2.74" fill="#FFFFFF" opacity="0.31"/>
+      <circle cx="656.0" cy="285.4" r="2.49" fill="#FFFFFF" opacity="0.48"/>
+      <circle cx="639.0" cy="234.6" r="2.82" fill="#FFFFFF" opacity="0.32"/>
+      <circle cx="644.5" cy="230.0" r="1.86" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="399.5" cy="405.7" r="4.01" fill="#FFFFFF" opacity="0.36"/>
+      <circle cx="538.0" cy="403.3" r="2.73" fill="#FFFFFF" opacity="0.58"/>
+      <circle cx="531.1" cy="472.8" r="2.89" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="458.3" cy="473.0" r="4.04" fill="#FFFFFF" opacity="0.32"/>
+      <circle cx="659.8" cy="311.1" r="3.18" fill="#FFFFFF" opacity="0.47"/>
+      <circle cx="383.3" cy="265.3" r="2.63" fill="#FFFFFF" opacity="0.34"/>
+      <circle cx="375.1" cy="278.6" r="3.64" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="484.1" cy="257.2" r="2.77" fill="#FFFFFF" opacity="0.46"/>
+      <circle cx="640.6" cy="318.0" r="3.20" fill="#FFFFFF" opacity="0.42"/>
+      <circle cx="535.0" cy="291.6" r="1.88" fill="#FFFFFF" opacity="0.50"/>
+      <circle cx="634.4" cy="439.1" r="4.28" fill="#FFFFFF" opacity="0.37"/>
+      <circle cx="457.2" cy="249.0" r="1.80" fill="#FFFFFF" opacity="0.40"/>
+      <circle cx="439.4" cy="287.0" r="3.20" fill="#FFFFFF" opacity="0.49"/>
+      <circle cx="599.2" cy="377.0" r="1.69" fill="#FFFFFF" opacity="0.43"/>
+      <circle cx="534.5" cy="377.5" r="3.38" fill="#FFFFFF" opacity="0.29"/>
+      <circle cx="644.5" cy="419.1" r="2.75" fill="#FFFFFF" opacity="0.56"/>
+      <circle cx="613.1" cy="409.9" r="2.06" fill="#FFFFFF" opacity="0.30"/>
+      <circle cx="605.8" cy="410.9" r="2.89" fill="#FFFFFF" opacity="0.24"/>
+      <circle cx="503.2" cy="395.0" r="2.42" fill="#FFFFFF" opacity="0.39"/>
+      <circle cx="641.3" cy="275.2" r="3.16" fill="#FFFFFF" opacity="0.30"/>
+      <circle cx="562.4" cy="294.7" r="2.01" fill="#FFFFFF" opacity="0.46"/>
+      <circle cx="528.0" cy="223.5" r="4.08" fill="#FFFFFF" opacity="0.34"/>
+      <circle cx="646.6" cy="469.0" r="3.90" fill="#FFFFFF" opacity="0.50"/>
+      <circle cx="575.1" cy="243.6" r="2.87" fill="#FFFFFF" opacity="0.28"/>
+      <circle cx="420.7" cy="346.7" r="4.02" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="425.6" cy="393.3" r="2.44" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="420.9" cy="486.6" r="4.03" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="546.0" cy="467.3" r="2.10" fill="#FFFFFF" opacity="0.55"/>
+      <circle cx="401.4" cy="279.8" r="3.16" fill="#FFFFFF" opacity="0.31"/>
+      <circle cx="618.5" cy="470.8" r="2.82" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="502.5" cy="477.3" r="1.78" fill="#FFFFFF" opacity="0.31"/>
+      <circle cx="443.3" cy="465.0" r="2.35" fill="#FFFFFF" opacity="0.53"/>
+      <circle cx="688.1" cy="210.6" r="3.16" fill="#FFFFFF" opacity="0.21"/>
+      <circle cx="510.5" cy="359.9" r="2.18" fill="#FFFFFF" opacity="0.50"/>
+      <circle cx="466.4" cy="272.7" r="2.41" fill="#FFFFFF" opacity="0.37"/>
+      <circle cx="593.1" cy="225.5" r="1.72" fill="#FFFFFF" opacity="0.22"/>
+      <circle cx="536.5" cy="317.8" r="3.57" fill="#FFFFFF" opacity="0.54"/>
+      <circle cx="562.9" cy="264.3" r="4.13" fill="#FFFFFF" opacity="0.26"/>
+      <circle cx="425.5" cy="313.2" r="2.02" fill="#FFFFFF" opacity="0.42"/>
+      <circle cx="611.4" cy="440.8" r="4.03" fill="#FFFFFF" opacity="0.29"/>
+      <circle cx="495.2" cy="214.0" r="3.35" fill="#FFFFFF" opacity="0.27"/>
+      <circle cx="612.0" cy="346.3" r="3.33" fill="#FFFFFF" opacity="0.41"/>
+      <circle cx="399.6" cy="446.5" r="1.99" fill="#FFFFFF" opacity="0.34"/>
+      <circle cx="431.2" cy="443.3" r="3.26" fill="#FFFFFF" opacity="0.45"/>
+      <circle cx="575.4" cy="327.4" r="1.74" fill="#FFFFFF" opacity="0.29"/>
+      <circle cx="552.8" cy="386.5" r="2.82" fill="#FFFFFF" opacity="0.19"/>
+      <circle cx="415.5" cy="447.9" r="4.38" fill="#FFFFFF" opacity="0.33"/>
+      <circle cx="558.3" cy="447.8" r="3.48" fill="#FFFFFF" opacity="0.29"/>
+      <circle cx="491.6" cy="412.3" r="1.83" fill="#FFFFFF" opacity="0.23"/>
+      <circle cx="490.6" cy="303.3" r="3.87" fill="#FFFFFF" opacity="0.55"/>
+      <circle cx="484.3" cy="253.0" r="1.92" fill="#FFFFFF" opacity="0.55"/>
+      <circle cx="500.5" cy="350.1" r="3.40" fill="#FFFFFF" opacity="0.51"/>
+      <circle cx="422.7" cy="357.1" r="3.22" fill="#FFFFFF" opacity="0.49"/>
+      <circle cx="620.5" cy="386.6" r="4.16" fill="#FFFFFF" opacity="0.54"/>
+        
+        <rect x="0" y="0" width="1050" height="1400" fill="url(#sheen)"/>
+      </g>
+
+      
     </g>
-    <rect width="1100" height="1375" fill="url(#light)"/>
+
+    <rect x="0" y="0" width="1050" height="1400" fill="url(#key)"/>
   </g>
 </svg>

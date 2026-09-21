@@ -133,6 +133,10 @@ export interface SiteContent {
   brand: {
     name: string;
     latin: string;
+    /** Latin trade descriptor for the micro-labels, e.g. BRIDAL ATELIER.
+     *  Uppercase Latin only — `.t-label` tracks it, and tracking Persian
+     *  severs the cursive joins. */
+    latinTrade: string;
     /** One line, used in the footer and as the meta description base. */
     line: string;
   };
@@ -206,6 +210,21 @@ export interface HeroContent extends SectionIntro {
   image: MediaAsset;
   inset: MediaAsset;
   insetCaption: string;
+  /**
+   * The three measurements called out on the hero gown.
+   *
+   * Names only — never a value. A number here would be a fabricated
+   * measurement of a gown that does not exist, which is the same class of
+   * invention as a made-up founding year, just harder to notice. The hero
+   * shows *what is measured*, which is the atelier's whole claim; what it
+   * measured is a fact only a real fitting produces.
+   *
+   * Exactly three: the composition anchors them to three fixed points on the
+   * silhouette, and the count is part of the design rather than of the data.
+   */
+  measures: [string, string, string];
+  /** Accessible name of the callout list. */
+  measuresLabel: string;
 }
 
 export interface StatementContent {

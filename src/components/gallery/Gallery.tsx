@@ -39,7 +39,7 @@ export function Gallery() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="gallery" aria-labelledby="gallery-heading" className="ground-light-deep">
+    <section id="gallery" aria-labelledby="gallery-heading" className="ground-dark on-dark">
       <div className="container py-[var(--section-y)]">
         <SectionHeading
           id="gallery-heading"

@@ -30,6 +30,7 @@ export const site: SiteContent = {
   brand: {
     name: "آوینه",
     latin: "AVINEH",
+    latinTrade: "BRIDAL ATELIER",
     line: "آتلیهٔ دوخت سفارشی لباس عروس و مجلسی.",
   },
 

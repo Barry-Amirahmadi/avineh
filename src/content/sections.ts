@@ -47,7 +47,8 @@ export const hero: HeroContent = {
   image: {
     src: "/media/hero-main.svg",
     alt: "لباس عروس آوینه، ایستاده در نور کم آتلیه",
-    ratio: "3/4",
+    /* Must match the hero canvas in scripts/generate-media.mjs. */
+    ratio: "4/3",
   },
   inset: {
     src: "/media/hero-inset.svg",
@@ -55,6 +56,9 @@ export const hero: HeroContent = {
     ratio: "1/1",
   },
   insetCaption: "دوخت دست بالاتنه",
+  /* Names, not numbers — see the note on `measures` in types/content.ts. */
+  measures: ["دور سینه", "دور کمر", "قد بالاتنه"],
+  measuresLabel: "اندازه‌هایی که از شما گرفته می‌شود",
 };
 
 export const statement: StatementContent = {

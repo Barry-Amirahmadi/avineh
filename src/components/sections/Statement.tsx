@@ -11,7 +11,7 @@ import { Reveal } from "@/components/motion/Reveal";
  */
 export function Statement() {
   return (
-    <Section ground="light-deep" rhythm="tight">
+    <Section ground="light" rhythm="tight">
       <div className="grid-editorial">
         <div className="col-span-4 md:col-span-7 lg:col-start-2 lg:col-span-9">
           <Reveal>

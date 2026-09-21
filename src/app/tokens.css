@@ -3,71 +3,118 @@
    Single source of truth. Nothing in the app may hardcode a colour, a size,
    a duration or an easing curve; it references a token from this file.
 
-   Palette rationale — the colours are named from the subject's own world, the
-   three materials a gown is actually made of:
-     حریر  / harir    fine silk gauze, the ground the brand speaks on
-     مخمل  / makhmal  velvet — the only cloth that absorbs light rather than
-                      returning it, which is exactly what a dark ground does
-     اطلس  / atlas    satin, in a dusty champagne. Sheen, never metal.
-   One accent only. No pink, no rose gold, no metallic gradient.
+   ---------------------------------------------------------------------------
+   WHY THIS PALETTE IS NOT THE PREVIOUS ONE
 
-   **Every ratio below is measured, not estimated.** The accent's seed value
-   `#A88B84` was specified for this site and measured 2.81:1 against `harir` —
-   under the 3:1 floor a rule or a large heading needs. It was darkened along
-   its own hue and saturation, hsl(11.7, 17.1%), until it passed against the
-   *darkest* light ground, which is `harir-deep`, not `harir`: a dark accent
-   has its worst light-side contrast against the deepest of the three planes,
-   so clearing that one clears all three.
+   The first palette was cream `#F4F2F1` + near-black + a dusty rose accent,
+   with a serif display face. That specific combination is the single most
+   common look generated on request right now, on any subject; it is tasteful,
+   and it is therefore invisible. Measured on the shipped site: the surfaces
+   where the *design* showed rather than the photography were 78% achromatic on
+   the hero, 81% on the collection page and 95% on the about page, at a mean
+   saturation of 0.016–0.062. Contrast of lightness was extreme, contrast of
+   colour was nil. That is what "it looks plain" was detecting.
+
+   This palette is built from the workroom rather than from the wedding:
+
+     شب     / shab     night. An atelier that works by appointment, after
+                       hours. DARK IS THE PRIMARY GROUND, not an alternating
+                       band — a pale gown only glows if it is on something.
+     ورق    / varagh   the sheet. Pattern paper and tailor's marking chalk,
+                       deliberately COOL, not cream. Cool light makes an ivory
+                       gown read warm and alive; cream light makes it dingy.
+     برنج   / berenj   brass. Pins, thimble, shears. The single UI accent.
+
+   And three collection pigments, from the vernacular of an Iranian wedding,
+   one per collection, so that colour carries information instead of decorating:
+
+     مروارید / morvarid  pearl-blue     لباس عروس
+     سبز     / sabz      the sofreh's green   لباس نامزدی
+     زرشک    / zereshk   zereshki wine  لباس مجلسی
+
+   RESTRAINT RULE, load-bearing: a collection pigment may tint its band's
+   ground and colour its own marker. It may never colour type, a control, or a
+   component. Three chromas used any more freely than that is a rainbow.
+
+   **Every ratio below is measured with the WCAG 2.1 relative-luminance
+   formula, not estimated.** Where a value is a search result rather than a
+   choice, the seed it was derived from is named.
    ========================================================================= */
 
 @theme {
-  /* ---- Colour: light ground ------------------------------------------- */
-  --color-harir: #f4f2f1; /* primary page ground */
-  --color-harir-deep: #e6e2e1; /* secondary ground, image mats */
-  --color-harir-raised: #fbfafa; /* raised surface */
+  /* ---- Colour: dark ground — THE PRIMARY GROUND ------------------------ */
+  --color-shab: #12131a; /* primary page ground */
+  --color-shab-deep: #0b0c11; /* deepest ground, closing CTA */
+  --color-shab-raised: #1c1e28; /* raised surface on dark */
 
-  /* ---- Colour: dark ground -------------------------------------------- */
-  --color-makhmal: #1c1418; /* primary dark ground + primary ink */
-  --color-makhmal-deep: #140e11; /* deepest ground, closing CTA */
-  --color-makhmal-raised: #291f24; /* raised surface on dark */
+  /* ---- Colour: light pool ----------------------------------------------
+     Used for the reading surfaces — the about page, the values ledger — not
+     for the page as a whole. Cool grey-green, ~1.5° off neutral, which is
+     what separates it from the warm cream default.                         */
+  --color-varagh: #e2e5e3;
+  --color-varagh-deep: #d2d6d4; /* secondary ground, image mats */
+  --color-varagh-raised: #eef0ef; /* raised surface */
 
-  /* ---- Colour: text ---------------------------------------------------- */
-  --color-ink: #1c1418; /* on light — 16.2:1 on harir, 14.0:1 on harir-deep */
-  --color-ink-2: #675d5b; /* body — 5.7:1 on harir, 5.0:1 on harir-deep */
-  --color-ink-3: #6c6260; /* metadata — 5.3:1 on harir, 4.6:1 on harir-deep */
-  --color-chalk: #e7e5e4; /* on dark — 14.4:1 on makhmal, 12.7:1 on raised */
-  --color-chalk-2: #aaa09d; /* on dark —  7.1:1 on makhmal,  6.3:1 on raised */
+  /* ---- Colour: text ------------------------------------------------------
+     The light-side values are bounded by `varagh-deep`, the darkest of the
+     three light planes: clearing that one clears all three.                 */
+  --color-ink: #12131a; /* 14.6:1 varagh · 12.6:1 varagh-deep · 16.2:1 raised */
+  --color-ink-2: #4a5250; /* body —     6.3:1 varagh · 5.5:1 varagh-deep */
+  --color-ink-3: #565e5b; /* metadata — 5.3:1 varagh · 4.6:1 varagh-deep */
+  --color-chalk: #e8eae9; /* on dark — 15.3:1 shab · 16.2:1 deep · 13.7:1 raised */
+  --color-chalk-2: #9aa3a8; /* on dark —  7.2:1 shab ·  6.5:1 raised */
 
-  /* ---- Colour: accent --------------------------------------------------- */
-  --color-atlas: #9a7870; /* 3.6:1 harir · 3.1:1 harir-deep — large text, rules, non-text UI only */
-  --color-atlas-deep: #745952; /* 5.7:1 harir · 5.0:1 harir-deep — safe for small text */
-  --color-atlas-bright: #bba59f; /* 7.7:1 makhmal · 6.8:1 makhmal-raised — accent on dark */
+  /* ---- Colour: accent — brass -------------------------------------------
+     Three steps because one brass cannot serve both grounds. The light-side
+     pair was searched down in lightness from the dark-side value `#B08D57` at
+     fixed hue and saturation until each cleared its floor against
+     `varagh-deep`.                                                          */
+  --color-berenj: #b08d57; /* on dark —  6.0:1 shab · 5.4:1 raised — safe for small text */
+  --color-berenj-deep: #6f5834; /* on light — 5.3:1 varagh · 4.6:1 varagh-deep — small text */
+  --color-berenj-mid: #907244; /* on light — 3.5:1 varagh · 3.1:1 varagh-deep — rules, large text, non-text UI only */
+
+  /* ---- Colour: collection pigments --------------------------------------
+     `-ground` tints the band. `-mark` is the only thing drawn in the pigment,
+     and every one of them clears 4.5:1 on its own band AND on both plain dark
+     grounds, because a marker outlives the band it was designed against.    */
+  --color-morvarid-ground: #141e28;
+  --color-morvarid-mark: #a9c2d4; /* 9.1:1 own band · 10.0:1 shab · 9.0:1 raised */
+  --color-sabz-ground: #132318;
+  --color-sabz-mark: #7fb394; /* 6.9:1 own band · 7.7:1 shab · 6.9:1 raised */
+  --color-zereshk-ground: #231017;
+  --color-zereshk-mark: #d08496; /* 6.4:1 own band · 6.6:1 shab · 5.9:1 raised */
 
   /* ---- Colour: lines ---------------------------------------------------- */
-  --color-line: color-mix(in srgb, #1c1418 14%, transparent);
-  --color-line-strong: color-mix(in srgb, #1c1418 30%, transparent);
-  --color-line-dark: color-mix(in srgb, #e7e5e4 16%, transparent);
-  --color-line-dark-strong: color-mix(in srgb, #e7e5e4 34%, transparent);
+  --color-line: color-mix(in srgb, #12131a 14%, transparent);
+  --color-line-strong: color-mix(in srgb, #12131a 30%, transparent);
+  --color-line-dark: color-mix(in srgb, #e8eae9 16%, transparent);
+  --color-line-dark-strong: color-mix(in srgb, #e8eae9 34%, transparent);
 
   /* ---- Colour: state ---------------------------------------------------- */
-  --color-focus: #745952; /* 5.7:1 on harir — well over the 3:1 a ring needs */
-  --color-focus-dark: #bba59f; /* 7.7:1 on makhmal */
+  --color-focus: #6f5834; /* 4.6:1 on the darkest light plane — over the 3:1 a ring needs */
+  --color-focus-dark: #b08d57; /* 5.4:1 on the lightest dark plane */
 
   /* ---- Type families ----------------------------------------------------
-     Mirza      — Nastaliq-inflected Persian Naskh, long descenders. Display only.
-     Vazirmatn  — neutral Persian/Latin sans. Body, UI, all small sizes.
+     Gulzar     — NASTALIQ. Display only: the wordmark, h1, h2. Never body,
+                  never a control, never below ~1.75rem. Nastaliq is written
+                  on a steep descending slope and is genuinely slower to read
+                  at text sizes; at display size it is the most Persian thing
+                  on the page and the least reproducible by a competitor.
+                  Single weight — there is no bold, so hierarchy comes from
+                  size, never from weight.
+     Vazirmatn  — neutral Persian/Latin sans. Body, UI, h3, every small size.
      Wired to next/font in layout.tsx; the vars are declared there.          */
-  --font-display: var(--font-mirza), "Mirza", serif;
+  --font-display: var(--font-gulzar), "Gulzar", serif;
   --font-body: var(--font-vazir), "Vazirmatn", system-ui, sans-serif;
 
   /* ---- Type scale — fluid, no breakpoint jumps --------------------------
-     Shifted up from the source template: Mirza sets a visibly smaller image
-     than Markazi Text at the same px, because its x-height is lower and its
-     letterforms lean. Matching the *optical* size, not the number, is what
-     keeps the display voice as loud as it was.                              */
-  --text-display: clamp(3rem, 6.8vw, 6rem);
-  --text-h1: clamp(2.5rem, 5.4vw, 4.375rem);
-  --text-h2: clamp(2.125rem, 4.8vw, 3.75rem);
+     Shifted up again for Gulzar. A nastaliq face sets a much smaller optical
+     image than a naskh or a serif at the same px, because the letterforms
+     stack diagonally inside the em rather than sitting on a baseline. These
+     numbers match the optical size, not the metric.                         */
+  --text-display: clamp(3.25rem, 7.6vw, 6.75rem);
+  --text-h1: clamp(2.75rem, 6vw, 4.875rem);
+  --text-h2: clamp(2.25rem, 5.2vw, 4rem);
   --text-h3: clamp(1.5rem, 2.4vw, 2.125rem);
   --text-lead: clamp(1.0625rem, 1.5vw, 1.3125rem);
   --text-body: 1.0625rem; /* 17px — Persian reads small at 16 */
@@ -76,13 +123,13 @@
   --text-micro: 0.6875rem; /* Latin labels only, always tracked */
 
   /* ---- Line height ------------------------------------------------------
-     Display is 1.5, not the 1.16 a compact Naskh allowed. Mirza's descenders
-     run far below the baseline and its ascenders far above; at 1.16 a
-     two-line Persian heading collides with itself. This is the one number in
-     this file that is a hard floor rather than a preference.                */
-  --leading-display: 1.5;
-  --leading-heading: 1.5;
-  --leading-body: 2.05; /* airier than the source — a gown needs room */
+     THE HARD FLOOR OF THIS FILE. Nastaliq's descenders fall most of an em
+     below the baseline and the next word begins above where the last one
+     ended. At the 1.5 the previous naskh face wanted, a two-line Gulzar
+     heading overlaps itself. Measured in the built output, not guessed.     */
+  --leading-display: 1.95;
+  --leading-heading: 1.95;
+  --leading-body: 2.05; /* Vazirmatn — airier than the template, a gown needs room */
   --leading-tight: 1.7;
 
   /* ---- Spacing scale ---------------------------------------------------- */
@@ -98,10 +145,7 @@
   --space-10: 8rem;
   --space-11: 12rem;
 
-  /* ---- Layout rhythm ----------------------------------------------------
-     Roughly 20% more air between bands than the source template. A gown is
-     photographed standing and read whole; crowding one against the next band
-     is the single fastest way to make an atelier look like a catalogue.      */
+  /* ---- Layout rhythm ---------------------------------------------------- */
   --section-y: clamp(6.5rem, 13vw, 13rem);
   --section-y-tight: clamp(4.25rem, 8.5vw, 8.5rem);
   --gutter: clamp(1.25rem, 4.5vw, 4.5rem); /* page padding */
@@ -110,14 +154,23 @@
   --measure: 34rem; /* comfortable Persian line length */
   --measure-tight: 26rem;
 
-  /* ---- Radius — near-zero by design. Editorial, not soft-card. ---------- */
+  /* ---- The tape ---------------------------------------------------------
+     The graduation interval of the measuring rule down the page edge, and the
+     width it reserves. Tokens rather than magic numbers because the stitch
+     divider's dash pitch is derived from the same interval — the two devices
+     are one system and must not drift apart.                                */
+  --tape-step: 1.5rem;
+  --tape-width: 3.25rem;
+  --stitch-pitch: 0.5rem;
+
+  /* ---- Radius — zero by design. Editorial, not soft-card. --------------- */
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-full: 999px;
 
   /* ---- Elevation — used sparingly; this design leans on rules, not shadow */
-  --shadow-lift: 0 1px 2px color-mix(in srgb, #1c1418 6%, transparent),
-    0 16px 40px -24px color-mix(in srgb, #1c1418 30%, transparent);
+  --shadow-lift: 0 1px 2px color-mix(in srgb, #12131a 6%, transparent),
+    0 16px 40px -24px color-mix(in srgb, #12131a 30%, transparent);
 
   /* ---- Motion ----------------------------------------------------------- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -143,6 +196,12 @@
    ========================================================================= */
 :root {
   --flow-start: 1; /* content enters from the right in RTL */
+
+  /* The pigment currently in play. Overridden per collection band; defaults to
+     brass so that anything outside a band still has a defined marker colour
+     rather than inheriting whichever band rendered last. */
+  --pigment: var(--color-berenj);
+  --pigment-ground: var(--color-shab);
 }
 [dir="ltr"] {
   --flow-start: -1;
@@ -153,5 +212,5 @@
 @property --shade {
   syntax: "<color>";
   inherits: true;
-  initial-value: #3a2c32;
+  initial-value: #1c1e28;
 }

@@ -44,7 +44,7 @@ export function CtaSection({ secondary = cta.secondary }: { secondary?: NavItem 
           background:
             /* Falls off toward the left, so the photograph is readable where
                there is no type and near-opaque under the heading. */
-            "linear-gradient(to left, var(--color-makhmal-deep) 18%, color-mix(in srgb, var(--color-makhmal-deep) 88%, transparent) 46%, color-mix(in srgb, var(--color-makhmal-deep) 40%, transparent))",
+            "linear-gradient(to left, var(--color-shab-deep) 18%, color-mix(in srgb, var(--color-shab-deep) 88%, transparent) 46%, color-mix(in srgb, var(--color-shab-deep) 40%, transparent))",
         }}
       />
 

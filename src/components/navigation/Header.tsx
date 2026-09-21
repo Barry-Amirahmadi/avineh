@@ -54,7 +54,7 @@ export function Header() {
 
   return (
     <>
-      <header className="site-header" data-scrolled={scrolled}>
+      <header className="site-header on-dark" data-scrolled={scrolled}>
         <div className="container flex items-center justify-between gap-6 py-4">
           <Wordmark />
 
