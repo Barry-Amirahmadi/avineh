@@ -54,27 +54,10 @@ export const products: Product[] = [
     ],
     tone: "#D8D2C6",
     image: {
-      src: "/media/gown-sepidar.svg",
+      src: "/media/gown-sepidar.jpg",
       alt: "لباس عروس سپیدار با برش ستونی، ایستاده در نور کم",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-sepidar-back.svg",
-        alt: "نمای پشت لباس سپیدار، بالاتنهٔ بسته و فرم باریک",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-sepidar-detail.svg",
-        alt: "نمای نزدیک از مهره‌دوزی دست روی بالاتنهٔ سپیدار",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-sepidar-hem.svg",
-        alt: "نمای نزدیک از دامن سادهٔ سپیدار تا لبهٔ پایین",
-        ratio: "3/4",
-      },
-    ],
     layout: "tall",
     status: "published",
   },
@@ -97,27 +80,10 @@ export const products: Product[] = [
     ],
     tone: "#C8C6C9",
     image: {
-      src: "/media/gown-mahtab.svg",
+      src: "/media/gown-mahtab.jpg",
       alt: "لباس عروس مهتاب با فرم آ-لاین و دنبالهٔ بلند",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-mahtab-back.svg",
-        alt: "نمای پشت لباس مهتاب، دنبالهٔ بلند روی زمین",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-mahtab-detail.svg",
-        alt: "نمای نزدیک از بالاتنهٔ سادهٔ لباس مهتاب",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-mahtab-hem.svg",
-        alt: "نمای نزدیک از دامن آ-لاین و پایان دنبالهٔ مهتاب",
-        ratio: "3/4",
-      },
-    ],
     layout: "wide",
     status: "published",
   },
@@ -143,27 +109,10 @@ export const products: Product[] = [
        everything after it off the screen — so the feature slot is `4/5`, and
        its own views follow it rather than the catalogue. */
     image: {
-      src: "/media/gown-niloofar.svg",
+      src: "/media/gown-niloofar.jpg",
       alt: "لباس عروس نیلوفر با دامن پرحجم",
       ratio: "4/5",
     },
-    views: [
-      {
-        src: "/media/gown-niloofar-back.svg",
-        alt: "نمای پشت لباس نیلوفر، خط پشت باز",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-niloofar-detail.svg",
-        alt: "نمای نزدیک از کار دست روی بالاتنهٔ نیلوفر",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-niloofar-hem.svg",
-        alt: "نمای نزدیک از دامن نیلوفر و لبهٔ دوخته‌شدهٔ آن",
-        ratio: "3/4",
-      },
-    ],
     layout: "feature",
     status: "published",
   },
@@ -185,27 +134,10 @@ export const products: Product[] = [
     ],
     tone: "#D3CFC8",
     image: {
-      src: "/media/gown-shabnam.svg",
+      src: "/media/gown-shabnam.jpg",
       alt: "لباس نامزدی شبنم، کوتاه و بدون آستین",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-shabnam-back.svg",
-        alt: "نمای پشت لباس شبنم، فرم باریک و بدون دنباله",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-shabnam-detail.svg",
-        alt: "نمای نزدیک از یقه و بالاتنهٔ شبنم",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-shabnam-hem.svg",
-        alt: "نمای نزدیک از دامن راست شبنم تا لبهٔ پایین",
-        ratio: "3/4",
-      },
-    ],
     layout: "compact",
     status: "published",
   },
@@ -227,27 +159,10 @@ export const products: Product[] = [
     ],
     tone: "#C4A9A2",
     image: {
-      src: "/media/gown-nastaran.svg",
+      src: "/media/gown-nastaran.jpg",
       alt: "لباس نامزدی نسترن با آستین بلند و بلندی میدی",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-nastaran-back.svg",
-        alt: "نمای پشت لباس نسترن، بالاتنهٔ گرم‌رنگ",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-nastaran-detail.svg",
-        alt: "نمای نزدیک از مهره‌دوزی بالاتنهٔ نسترن",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-nastaran-hem.svg",
-        alt: "نمای نزدیک از دامن نسترن و چین‌های آن",
-        ratio: "3/4",
-      },
-    ],
     layout: "tall",
     status: "published",
   },
@@ -269,27 +184,10 @@ export const products: Product[] = [
     ],
     tone: "#A88B6E",
     image: {
-      src: "/media/gown-termeh.svg",
+      src: "/media/gown-termeh.jpg",
       alt: "لباس نامزدی ترمه با بالاتنهٔ دست‌دوز",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-termeh-back.svg",
-        alt: "نمای پشت لباس ترمه، دنبالهٔ کوتاه",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-termeh-detail.svg",
-        alt: "نمای نزدیک از کار دست ترمه روی بالاتنه",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-termeh-hem.svg",
-        alt: "نمای نزدیک از دامن ترمه و لبهٔ دنباله",
-        ratio: "3/4",
-      },
-    ],
     layout: "wide",
     status: "published",
   },
@@ -311,27 +209,10 @@ export const products: Product[] = [
     ],
     tone: "#3A3238",
     image: {
-      src: "/media/gown-shabaneh.svg",
+      src: "/media/gown-shabaneh.jpg",
       alt: "لباس مجلسی شبانه، بلند و بسته از جلو",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-shabaneh-back.svg",
-        alt: "نمای پشت لباس شبانه، مخمل تیره و خط ساده",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-shabaneh-detail.svg",
-        alt: "نمای نزدیک از بالاتنهٔ مخمل شبانه",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-shabaneh-hem.svg",
-        alt: "نمای نزدیک از دامن باریک شبانه تا لبهٔ پایین",
-        ratio: "3/4",
-      },
-    ],
     layout: "compact",
     status: "published",
   },
@@ -353,27 +234,10 @@ export const products: Product[] = [
     ],
     tone: "#6B5560",
     image: {
-      src: "/media/gown-aazin.svg",
+      src: "/media/gown-aazin.jpg",
       alt: "لباس مجلسی آذین با مهره‌دوزی دست روی تمام سطح",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-aazin-back.svg",
-        alt: "نمای پشت لباس آذین، دامن پرچین",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-aazin-detail.svg",
-        alt: "نمای نزدیک از مهره‌دوزی بالاتنهٔ آذین",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-aazin-hem.svg",
-        alt: "نمای نزدیک از چین‌های دامن آذین",
-        ratio: "3/4",
-      },
-    ],
     layout: "tall",
     status: "published",
   },
@@ -395,27 +259,10 @@ export const products: Product[] = [
     ],
     tone: "#4A4148",
     image: {
-      src: "/media/gown-sayeh.svg",
+      src: "/media/gown-sayeh.jpg",
       alt: "لباس مجلسی سایه، یک‌شانه و نامتقارن",
       ratio: "3/4",
     },
-    views: [
-      {
-        src: "/media/gown-sayeh-back.svg",
-        alt: "نمای پشت لباس سایه، دنبالهٔ کوتاه",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-sayeh-detail.svg",
-        alt: "نمای نزدیک از بالاتنهٔ سادهٔ سایه",
-        ratio: "3/4",
-      },
-      {
-        src: "/media/gown-sayeh-hem.svg",
-        alt: "نمای نزدیک از دامن سایه و پایان دنباله",
-        ratio: "3/4",
-      },
-    ],
     layout: "wide",
     status: "published",
   },

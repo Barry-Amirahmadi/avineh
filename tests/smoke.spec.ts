@@ -1,4 +1,13 @@
 import { test, expect, type Page } from "@playwright/test";
+import { products } from "../src/content/products";
+
+/**
+ * Pass-2 views are hidden: the content carries no `views` until their
+ * photographs exist, so the view-strip test below has nothing to exercise.
+ * It is guarded rather than deleted, and runs again by itself the day the
+ * views are restored to `src/content/products.ts`.
+ */
+const anyViews = products.some((p) => (p.views?.length ?? 0) > 0);
 
 /**
  * Smoke pass — deliberately small.
@@ -199,6 +208,7 @@ test("a product route survives a hard load under the base path", async ({ page }
  * an empty `alt`, which looks perfect and is silent. All three are asserted.
  */
 test("a gown's other views render, open in order, and are described", async ({ page }) => {
+  test.skip(!anyViews, "views are hidden until the pass-2 photographs exist");
   const { consoleErrors, failed } = watch(page);
 
   // مهتاب carries three views, the widest case in the catalogue.
@@ -252,6 +262,11 @@ test("a gown's other views render, open in order, and are described", async ({ p
 test("every view in the catalogue is described, and no gown renders an empty strip", async ({
   page,
 }) => {
+  // One page load per gown, nine in all. Alone that is 9–10 s; with the
+  // photographs in and the rest of the suite running beside it, the mobile
+  // run passed 30 s and failed on the default budget. The work is fixed by
+  // the catalogue, so the budget is tripled for it.
+  test.slow();
   const offenders: string[] = [];
 
   for (const slug of SLUGS) {
@@ -590,6 +605,11 @@ test("every control that leaves the mobile menu closes it", async ({ page }, tes
     (testInfo.project.use.viewport?.width ?? 0) >= 1024,
     "the mobile panel does not exist at desktop widths",
   );
+  // One home-page load per panel link. Alone that is 18 s; with the
+  // photographs in and the rest of the suite running beside it, the same
+  // loads measured 41 s against the default 30 s budget. The work is fixed
+  // by the panel, so the budget is tripled for it.
+  test.slow();
 
   await page.goto(`${BASE}/`);
 

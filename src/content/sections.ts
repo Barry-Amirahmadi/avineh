@@ -45,13 +45,13 @@ export const hero: HeroContent = {
   secondary: { label: "دربارهٔ آوینه", href: "/#brand" },
   scrollHint: "پیمایش کنید",
   image: {
-    src: "/media/hero-main.svg",
+    src: "/media/hero-main.jpg",
     alt: "لباس عروس آوینه، ایستاده در نور کم آتلیه",
     /* Must match the hero canvas in scripts/generate-media.mjs. */
     ratio: "4/3",
   },
   inset: {
-    src: "/media/hero-inset.svg",
+    src: "/media/hero-inset.jpg",
     alt: "نمای نزدیک از دوخت دست روی بالاتنه",
     ratio: "1/1",
   },
@@ -136,7 +136,7 @@ export const brand: BrandContent = {
   heading: "روش کار ما",
   lead: "چهار چیزی که در هر لباس، از اولین اندازه‌گیری تا پروی آخر، ثابت می‌ماند.",
   image: {
-    src: "/media/values-texture.svg",
+    src: "/media/values-texture.jpg",
     alt: "نمای نزدیک از پارچه روی میز کار آتلیه",
     ratio: "3/4",
   },
@@ -215,7 +215,7 @@ export const about: AboutContent = {
     "این یعنی زمان می‌برد و یعنی باید چند بار برای پرو بیایید. ترجیح می‌دهیم همین را از اول بگوییم تا کسی با انتظار لباس آمادهٔ فردا وارد شود.",
   ],
   image: {
-    src: "/media/gallery-04.svg",
+    src: "/media/gallery-04.jpg",
     alt: "میز کار آتلیهٔ آوینه در نور صبح",
     ratio: "4/3",
   },
